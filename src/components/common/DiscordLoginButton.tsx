@@ -6,6 +6,7 @@ const DiscordLoginButton = () => {
     const url: string = import.meta.env.VITE_DISCORD_OAUTH2_URL;
     const id: string = import.meta.env.VITE_DISCORD_CLIENT_ID;
     const secret: string = import.meta.env.VITE_DISCORD_CLIENT_SECRET;
+    const apiUrl: string = import.meta.env.VITE_API_URL;
     window.location.href = url;
     console.log(url);
 
@@ -18,7 +19,7 @@ const DiscordLoginButton = () => {
         client_secret: secret,
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "http://localhost:3000/oauth/redirect",
+        redirect_uri: `${apiUrl}/auth/discord/login/redirect`,
         scope: "identify, email",
       };
 
