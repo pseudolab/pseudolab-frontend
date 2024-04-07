@@ -1,9 +1,9 @@
 // import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./modules/Header.tsx";
+import Header from "./modules/Header/Header.tsx";
 import Home from "./modules/Home/Home.tsx";
-import Footer from "./modules/Footer.tsx";
+import Footer from "./modules/Footer/Footer.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 

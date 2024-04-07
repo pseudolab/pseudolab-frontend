@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 type LogoImageProps = {
   maxWidth: string;
   height: string;
-  marginRight: string;
+  marginRight?: string;
 };
 
 const PseudoLabLogo = (props: LogoImageProps) => {
