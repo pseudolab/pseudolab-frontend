@@ -11,9 +11,11 @@ import {
   Button,
   Drawer,
   IconButton,
+  Typography,
 } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import { Menu, Close } from "@mui/icons-material";
 import PseudoLabLogo from "../../components/common/PseudoLabLogo";
+import UserProfile from "./UserProfile";
 // import DiscordLoginButton from "../components/common/DiscordLoginButton";
 
 interface Props {
@@ -24,7 +26,7 @@ interface Props {
   window?: () => Window;
 }
 
-const drawerWidth = 200;
+const drawerWidth = window.innerWidth * 0.7;
 const navItems = [
   { name: "커뮤니티", path: "/comunity", permission: "" },
   { name: "빌더", path: "/builder", permission: "" },
@@ -39,9 +41,13 @@ const Header = (props: Props) => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const userProfileIcon = <UserProfile isLoggedin={false} imgSrc={""} />;
+
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <PseudoLabLogo maxWidth="50%" height="auto" />
+    <Box sx={{ textAlign: "center" }}>
+      <IconButton onClick={handleDrawerToggle}>
+        <Close />
+      </IconButton>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -59,12 +65,25 @@ const Header = (props: Props) => {
     window !== undefined ? () => window().document.body : undefined;
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar component="nav">
+      <AppBar
+        component="nav"
+        elevation={0}
+        style={{ backgroundColor: "#0077A3" }}
+      >
         <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <PseudoLabLogo maxWidth="10%" height="auto" />
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <PseudoLabLogo maxWidth="5em" height="5em" />
+          <Typography variant="h6" noWrap component="div">
+            가짜연구소
+          </Typography>
+
+          <Box
+            marginLeft="20px"
+            sx={{
+              display: { xs: "none", sm: "block" },
+            }}
+          >
             {navItems.map((item) => (
-              <Button key={item.name} sx={{ color: "#fff" }} href={item.path}>
+              <Button key={item.name} sx={{ color: "white" }} href={item.path}>
                 {item.name}
               </Button>
             ))}
@@ -74,16 +93,20 @@ const Header = (props: Props) => {
           {/* 로그인 상태가 아니라면 */}
           {/* <DiscordLoginButton /> */}
           {/* 로그인 상태라면 프로필 얼굴 */}
-
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <Menu />
-          </IconButton>
+          <Box marginLeft="auto" marginRight="1em">
+            {userProfileIcon}
+          </Box>
+          <Box>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <Menu />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <nav>

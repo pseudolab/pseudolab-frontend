@@ -1,7 +1,7 @@
+import { Avatar, IconButton } from "@mui/material";
+import { Login } from "@mui/icons-material";
 import { useState } from "react";
-import { Avatar } from "@mui/material";
-import { Menu } from "@mui/icons-material";
-import PseudoLabLogo from "../../components/common/PseudoLabLogo";
+
 // import DiscordLoginButton from "../components/common/DiscordLoginButton";
 
 interface ProfileProps {
@@ -9,11 +9,23 @@ interface ProfileProps {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
+  isLoggedin: boolean;
   imgSrc: string;
 }
 
 const UserProfile = (profileProps: ProfileProps) => {
-  return <Avatar src={profileProps.imgSrc} />;
+  const [isLoggedIn, setIsLoggedIn] = useState(profileProps.isLoggedin);
+
+  const handleClick = () => {
+    setIsLoggedIn(!isLoggedIn);
+    console.log(isLoggedIn);
+  };
+
+  return (
+    <IconButton size="medium" onClick={handleClick}>
+      {isLoggedIn ? <Avatar src="" /> : <Login />}
+    </IconButton>
+  );
 };
 
 export default UserProfile;

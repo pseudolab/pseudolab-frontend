@@ -10,8 +10,8 @@ import {
 
 const bannerImages = [
   "https://pseudo-lab.com/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F333f96cf-396d-45ff-8331-232d41bd4d55%2Fa7cc37d4-d7b6-4421-80d4-73d46bb46027%2F-7---_-001_3.png?table=block&id=957b39d1-7657-484a-846c-3b261e67e004&spaceId=333f96cf-396d-45ff-8331-232d41bd4d55&width=2000&userId=&cache=v2",
-  "https://cdn.discordapp.com/attachments/944039671707607060/1172912855478186064/datacamp_3rd.png",
-  "https://cdn.discordapp.com/attachments/944039671707607060/1132519613700259930/IMG_20230723_124224_219.png",
+  "https://pseudo-lab.com/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F333f96cf-396d-45ff-8331-232d41bd4d55%2Fa7cc37d4-d7b6-4421-80d4-73d46bb46027%2F-7---_-001_3.png?table=block&id=957b39d1-7657-484a-846c-3b261e67e004&spaceId=333f96cf-396d-45ff-8331-232d41bd4d55&width=2000&userId=&cache=v2",
+  "https://pseudo-lab.com/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F333f96cf-396d-45ff-8331-232d41bd4d55%2Fa7cc37d4-d7b6-4421-80d4-73d46bb46027%2F-7---_-001_3.png?table=block&id=957b39d1-7657-484a-846c-3b261e67e004&spaceId=333f96cf-396d-45ff-8331-232d41bd4d55&width=2000&userId=&cache=v2",
 ];
 
 const MainBanner = () => {
