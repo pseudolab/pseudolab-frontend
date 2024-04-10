@@ -1,11 +1,12 @@
 import { styled } from "@mui/system";
-import pseudoLabLogo from "../../assets/pseudo-lab-logo.svg";
+import pseudoLabLogo from "../../assets/pseudo_lab_logo.png";
 import { Link } from "react-router-dom";
+import React from "react";
 
 type LogoImageProps = {
   maxWidth: string;
   height: string;
-  marginRight: string;
+  marginRight?: string;
 };
 
 const PseudoLabLogo = (props: LogoImageProps) => {
