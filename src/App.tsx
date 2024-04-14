@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./modules/Header/Header.tsx";
 import Home from "./modules/Home/Home.tsx";
 import Footer from "./modules/Footer/Footer.tsx";
-import Bingo from "./modules/Bingo/Bingo.tsx";
+import Bingo from "./modules/Bingo/index.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
