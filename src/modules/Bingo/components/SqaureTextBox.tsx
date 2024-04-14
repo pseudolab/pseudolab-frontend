@@ -1,27 +1,30 @@
 import { Container, Typography, Theme } from "@mui/material";
 import { styled } from "@mui/system";
 
-const Wrapper = styled("div")({
+const Wrapper = styled("div")<SquareTextProps>(({ status }) => ({
     border: "1px solid black",
     borderRadius: "3px",
-    margin: "0.3rem",
+    margin: "2px",
     backgroundColor: "#E2E7F0",
-    width: "100%",
-    aspectRatio: "1/1",
-    fontSize: "0.8rem",
+    width: "60px",
+    height: "60px",
+    // aspectRatio: "1/1",
+    fontSize: "12px",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
-});
+    alignItems: "center",
+    color: `${status === 1 ? "red" : "black"}`,
+}));
 
 
 type SquareTextProps = {
-    text: string;
+    value: string;
+    status: number;
 };
 
 const SquareTextBox = (props: SquareTextProps) => {
     return (
-        <Wrapper>{props.text}</Wrapper>
+        <Wrapper {...props}>{props.value}</Wrapper>
         );
 };
 
