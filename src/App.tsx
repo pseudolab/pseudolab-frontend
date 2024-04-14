@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./modules/Header/Header.tsx";
 import Home from "./modules/Home/Home.tsx";
 import Footer from "./modules/Footer/Footer.tsx";
+import Bingo from "./modules/Bingo/Bingo.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Test" element={<Test />} />
             <Route path="/About" element={<Game />} />
+            <Route path="/Bingo" element={<Bingo />} />
             {/* <Route path="/posts" component={Posts} />
             <Route path="/posts/:id" component={Post} />
             <Route path="/posts/new" component={NewPost} />
