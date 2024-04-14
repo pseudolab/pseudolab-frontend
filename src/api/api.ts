@@ -1,5 +1,21 @@
 const URL = "http://localhost:8000";
 
+export const createBingoBoard = async (
+  userId: string,
+  boardData: {
+    [key: string]: { value: string; status: number; selected: number };
+  }
+) => {
+  const response = await fetch(`${URL}/api/bingo/boards`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ board_data: boardData, user_id: parseInt(userId) }),
+  });
+  return response.ok;
+};
+
 export const getBingoBoard = async (userId: string) => {
   const response = await fetch(`${URL}/api/bingo/boards/${userId}`);
   if (response.ok === false) {
