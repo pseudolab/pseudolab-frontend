@@ -36,7 +36,6 @@ const navItems = [
 const Header = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -68,13 +67,12 @@ const Header = (props: Props) => {
       <AppBar
         component="nav"
         elevation={0}
-        style={{ backgroundColor: "#0077A3" }}
+        style={{ backgroundColor: "#FFFFFF" }}
       >
-        <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Toolbar
+          sx={{ color: "#0077A3", borderBottom: 1, borderColor: "divider" }}
+        >
           <PseudoLabLogo maxWidth="5em" height="5em" />
-          <Typography variant="h6" noWrap component="div">
-            가짜연구소
-          </Typography>
 
           <Box
             marginLeft="20px"
@@ -83,7 +81,11 @@ const Header = (props: Props) => {
             }}
           >
             {navItems.map((item) => (
-              <Button key={item.name} sx={{ color: "white" }} href={item.path}>
+              <Button
+                key={item.name}
+                sx={{ color: "#0077A3" }}
+                href={item.path}
+              >
                 {item.name}
               </Button>
             ))}
