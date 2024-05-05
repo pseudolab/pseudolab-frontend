@@ -73,6 +73,7 @@ type BingoPresenterProps = {
   myWord3: string;
   handleWordChange: WordChangeHandlers;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleMyIDChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onRefreshBingoWords: () => void;
   onClickSendWords: (opponentID: string) => void;
   onClickButton: () => void;
@@ -83,6 +84,11 @@ const BingoPresenter = (props: BingoPresenterProps) => {
     <>
       {props.userSelectedWords.length === 0 ? (
         <Wrapper>
+            <InputBox
+              placeholder="나의 ID를 입력"
+              value={props.myID}
+              onChange={props.handleMyIDChange}
+            ></InputBox>
           <SelectBox
             label="첫 번째 단어"
             value={props.myWord1}

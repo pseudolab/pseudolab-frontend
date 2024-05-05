@@ -8,7 +8,13 @@ import {
 } from "../../api/api.ts";
 import { defafultBingoBoard } from "./components/DefaultBingoBoard.ts";
 
-const MyID = "1";
+const useInput = (initialValue: string) => {
+  const [value, setValue] = useState(initialValue);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+  return { value, onChange };
+}
 
 const BingoContainer = () => {
   const [myWord1, setMyWord1] = useState("");
@@ -23,6 +29,7 @@ const BingoContainer = () => {
     { value: string; status: number }[]
   >([]);
   const [opponentID, setOpponentID] = useState("");
+  const MyID = useInput(localStorage.getItem('myID') || '');
   const [userSelectedWords, setUserSelectedWords] = useState<string[]>([]);
   const initBingoBoard = async () => {
     const boardData: {
@@ -35,37 +42,28 @@ const BingoContainer = () => {
         selected: [myWord1, myWord2, myWord3].includes(item.value) ? 1 : 0,
       });
     });
-    await createBingoBoard(MyID, boardData);
+    console.log(MyID)
+    await createBingoBoard(MyID.value, boardData);
   };
   const refreshBingoWords = async () => {
-    const newBingoWords = await getBingoBoard(MyID);
+    const newBingoWords = await getBingoBoard(MyID.value);
     setBingoWords(newBingoWords);
   };
-  const sendMyWords = async (opponentID: string) => {
-    const opponentBingoBoard = await getBingoBoard(opponentID);
-
-    const updatedOpponentBingoBoard: {
-      [key: string]: { value: string; status: number; selected: number };
-    } = {};
-
-    opponentBingoBoard.forEach((item) => {
-      updatedOpponentBingoBoard[item.id] = {
-        value: item.value,
-        status: userSelectedWords.includes(item.value) ? 1 : 0,
-        selected: item.selected,
-      };
-    });
-
-    updateBingoBoard(opponentID, updatedOpponentBingoBoard);
+  const sendMyWords = async () => {
+    updateBingoBoard(MyID.value, opponentID);
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOpponentID(event.target.value);
   };
+  const handleMyIDChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    MyID.onChange(event);
+    localStorage.setItem('myID', event.target.value);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedBingoWords = await getBingoBoard(MyID);
-      const fetchedSelectedWords = await getSelectedWords(MyID);
+      const fetchedBingoWords = await getBingoBoard(MyID.value);
+      const fetchedSelectedWords = await getSelectedWords(MyID.value);
       setBingoWords(fetchedBingoWords);
       setUserSelectedWords(fetchedSelectedWords);
     };
@@ -76,12 +74,13 @@ const BingoContainer = () => {
     <BingoPresenter
       bingoWords={bingoWords}
       userSelectedWords={userSelectedWords}
-      myID={MyID}
+      myID={MyID.value}
       opponentID={opponentID}
       myWord1={myWord1}
       myWord2={myWord2}
       myWord3={myWord3}
       handleWordChange={handleWordChange}
+      handleMyIDChange={handleMyIDChange}
       onRefreshBingoWords={refreshBingoWords}
       onClickSendWords={sendMyWords}
       handleInputChange={handleInputChange}
