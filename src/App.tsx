@@ -22,6 +22,7 @@ function App() {
             <Route path="/builder" element={<Test />} />
             <Route path="/runner" element={<Test />} />
             <Route path="/community" element={<Game />} />
+            <Route path="/Bingo" element={<Bingo />} />
             {/* <Route path="/posts" component={Posts} />
             <Route path="/posts/:id" component={Post} />
             <Route path="/posts/new" component={NewPost} />
