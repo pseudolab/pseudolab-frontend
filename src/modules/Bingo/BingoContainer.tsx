@@ -6,7 +6,7 @@ import {
   updateBingoBoard,
   createBingoBoard,
 } from "../../api/api.ts";
-import { defafultBingoBoard } from "./components/DefaultBingoBoard.ts";
+import { defafultBingoBoard, shuffleArray } from "./components/DefaultBingoBoard.ts";
 
 const useInput = (initialValue: string) => {
   const [value, setValue] = useState(initialValue);
@@ -35,7 +35,8 @@ const BingoContainer = () => {
     const boardData: {
       [key: string]: { value: string; status: number; selected: number };
     } = {};
-    defafultBingoBoard.forEach((item, index) => {
+    let bingoBoard = shuffleArray(defafultBingoBoard)
+    bingoBoard.forEach((item, index) => {
       return (boardData[index] = {
         value: item.value,
         status: [myWord1, myWord2, myWord3].includes(item.value) ? 1 : 0,
