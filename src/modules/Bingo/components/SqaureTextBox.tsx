@@ -6,14 +6,18 @@ const Wrapper = styled("div")<SquareTextProps>(({ status }) => ({
     borderRadius: "3px",
     margin: "2px",
     backgroundColor: "#E2E7F0",
-    width: "60px",
-    height: "60px",
-    // aspectRatio: "1/1",
     fontSize: "12px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     color: `${status === 1 ? "red" : "black"}`,
+    height: "60px",
+    width: "60px",
+    '@media (min-width: 768px)': {  // PC 화면 사이즈를 768px 이상으로 가정
+        width: "200px",  // PC에서 사용할 너비
+        height: "200px",  // PC에서 사용할 높이
+        fontSize: "24px",
+      }
 }));
 
 

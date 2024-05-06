@@ -36,6 +36,7 @@ const options = [
 
 const Wrapper = styled(Container)({
   marginTop: "4rem",
+  height: "100%"
 });
 
 const MyInfo = styled(Container)({
