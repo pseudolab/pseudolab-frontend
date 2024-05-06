@@ -43,17 +43,17 @@ export const getSelectedWords = async (userId: string) => {
 };
 
 export const updateBingoBoard = async (
-  userId: string,
-  boardData: {
-    [key: string]: { value: string; status: number; selected: number };
-  }
+  send_user_id: string,
+  receive_user_id: string
 ) => {
-  const response = await fetch(`${URL}/api/bingo/boards/${userId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ board_data: boardData, user_id: parseInt(userId) }),
-  });
+  const response = await fetch(
+    `${URL}/api/bingo/boards/bingo_status/${send_user_id}/${receive_user_id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   return response.ok;
 };
