@@ -51,7 +51,7 @@ const Header = (props: Props) => {
       <List>
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemButton sx={{ textAlign: "center" }} href={item.path}>
               <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
