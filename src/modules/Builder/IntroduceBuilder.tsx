@@ -1,5 +1,6 @@
 import { Container, Typography, Theme } from "@mui/material";
 import PseudoLabLogo from "../../components/common/PseudoLabLogo";
+import IntroduceBanner from "./component/IntroduceBanner";
 import { styled } from "@mui/system";
 
 const ImageContainer = styled(Container)({
@@ -12,6 +13,7 @@ const ImageContainer = styled(Container)({
 const MainContainer = styled(Container)({
   textAlign: "center",
   padding: (theme: Theme) => theme.spacing(4),
+//   margin: (theme: Theme) => theme.spacing(4),
 });
 
 const Title = styled(Typography)({
@@ -29,9 +31,9 @@ const Description = styled(Typography)({
 const IntroduceBuilder = () => {
   return (
     <MainContainer>
-      {/* <ImageContainer>
-        <PseudoLabLogo maxWidth="20rem" height="auto" />
-      </ImageContainer> */}
+      <ImageContainer>
+        <IntroduceBanner maxWidth="100%" width="100%" height="auto" />
+      </ImageContainer>
       <PseudoLabLogo maxWidth="20rem" height="auto" marginRight="auto" />
       <Title>가짜연구소 (Pseudo Lab)</Title>
       <Description>
