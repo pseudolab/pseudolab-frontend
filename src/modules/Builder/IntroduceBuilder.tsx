@@ -99,7 +99,7 @@ const IntroduceBuilder = () => {
           작성! 받고싶은 선물 포장하기: 팀/프로젝트의 자료와 성과를 잘 포장하고
           공유 및 발표하기!
           <br />
-          상세 정보: <a href="httpspseudo-lab.com">빌더 모집 상세 페이지 </a>
+          상세 정보: <a href="#">빌더 모집 상세 페이지 </a>
         </p>
       </Description>
       <Button
@@ -109,7 +109,6 @@ const IntroduceBuilder = () => {
           position: "fixed",
           left: 0,
           right: 0,
-          bottom: 50,
         }}
         variant="contained"
         color="primary"
