@@ -24,8 +24,6 @@ const SignUpForm = (signUpProps: SignUpProps) => {
         isInfoUseAgree: false,
     });
 
-
-
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, checked } = event.target;
         console.log(`${name} ${value} 변경`)
