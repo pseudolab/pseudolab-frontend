@@ -63,7 +63,7 @@ const Header = (props: Props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", height: 60 }}>
       <AppBar
         component="nav"
         elevation={0}
