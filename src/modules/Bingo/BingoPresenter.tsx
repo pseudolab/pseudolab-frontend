@@ -86,7 +86,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
       {props.userSelectedWords.length === 0 ? (
         <Wrapper>
             <InputBox
-              placeholder="나의 ID를 입력"
+              placeholder="나의 이름을 입력"
               value={props.myID}
               onChange={props.handleMyIDChange}
             ></InputBox>
@@ -115,8 +115,8 @@ const BingoPresenter = (props: BingoPresenterProps) => {
             options={options}
           />
           <Button
-            onClick={() => {
-              props.onClickButton();
+            onClick={async() => {
+              await props.onClickButton();
               window.location.reload();
             }}
           >
