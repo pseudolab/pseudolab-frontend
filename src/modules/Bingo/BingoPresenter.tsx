@@ -7,35 +7,36 @@ import SqaureTextBox from "./components/SqaureTextBox.tsx";
 import SelectBox from "./components/SelectBox.tsx";
 
 const options = [
-  "AI 스타트업 재직자",
-  "AI 아티스트",
-  "AI 뉴스레터 구독자",
-  "AI 유튜브 채널 구독자",
-  "프론트엔드, 백엔드 엔지니어",
-  "오픈소스 기여자",
-  "SNS 사용자",
-  "직전 경력 특이한",
-  "AI 모델 배포 경험자",
   "기술 블로그 운영자",
-  "해외 컨퍼런스 참가경험",
-  "귀여운 IT 굿즈 받아본자",
-  "Welcome to PseudoCon",
-  "부트캠프 참가경험",
-  "AI 관련 해커톤 경험자",
-  "올해를 알차게 보낸자",
-  "AI 윤리/정책 연구자",
-  "로봇/드론 관련 연구자",
-  "내 MBTI 설명 가능한자",
-  "VR/AR 헤드셋 보유자",
-  "Kaggle 또는 Dacon 우승자",
-  "멀티모달 관련 연구자",
-  "특별한 경험을 가진자",
-  "DevOps, MLOps, SRE",
-  "이전 기수 참가자",
+  "Linkedin 사용자",
+  "데이터 분석가/과학자",
+  "PM/PO",
+  "8기 스터디 참여자",
+  "인과추론 번역서 독자",
+  "A/B 테스트 경험자",
+  "제품 개선 경험자",
+  "인과추론팀 깃헙 팔로워",
+  "대시보드 만들어본 사람",
+  "통계/경제 전공자",
+  "오픈소스 기여자",
+  "SQL 사용자",
+  "데이터 컨퍼런스 참가경험",
+  "인과추론 연구자",
+  "CHATGPT 사용자",
+  "OP.GG 써본 사람",
+  "배그 해본 사람",
+  "게임이 취미인 사람",
+  "MBTI E인 사람",
+  "반려동물 키우는 사람",
+  "아이폰 쓰는 사람",
+  "넷플릭스 구독자",
+  "오늘 저녁 약속있는 사람",
+  "KPOP 좋아하는 사람",
 ];
 
 const Wrapper = styled(Container)({
   marginTop: "4rem",
+  height: "100%"
 });
 
 const MyInfo = styled(Container)({
@@ -85,7 +86,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
       {props.userSelectedWords.length === 0 ? (
         <Wrapper>
             <InputBox
-              placeholder="나의 ID를 입력"
+              placeholder="나의 이름을 입력"
               value={props.myID}
               onChange={props.handleMyIDChange}
             ></InputBox>
@@ -114,8 +115,8 @@ const BingoPresenter = (props: BingoPresenterProps) => {
             options={options}
           />
           <Button
-            onClick={() => {
-              props.onClickButton();
+            onClick={async() => {
+              await props.onClickButton();
               window.location.reload();
             }}
           >

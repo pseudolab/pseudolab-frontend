@@ -1,4 +1,13 @@
-const URL = "http://localhost:8000";
+const URL = "http://34.125.163.236:8000"; // TEMPORARY
+
+export const getUser = async (username: string) => {
+  const response = await fetch(`${URL}/api/auth/bingo/get-user?username=${username}`);
+  if (response.ok === false) {
+    return null;
+  }
+  const data = await response.json();
+  return data;
+}
 
 export const createBingoBoard = async (
   userId: string,
