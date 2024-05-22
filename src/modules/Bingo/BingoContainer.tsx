@@ -54,7 +54,8 @@ const BingoContainer = () => {
   };
   const sendMyWords = async () => {
     const user = await getUser(MyID.value);
-    updateBingoBoard(user.user_id, opponentID);
+    const opponent = await getUser(opponentID);
+    updateBingoBoard(user.user_id, opponent.user_id);
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOpponentID(event.target.value);
