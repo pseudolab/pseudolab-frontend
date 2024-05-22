@@ -13,9 +13,11 @@ interface BoardListItemProps {
     likeCount: Number;
 }
 
-const BoardListItem = (boardListItemProps: BoardListItemProps) => {
-
-
+const BoardListItem = (itemProps: BoardListItemProps) => {
+    const title = itemProps.title;
+    const viewCount = itemProps.viewCount;
+    const commentCount = itemProps.commentCount;
+    const likeCount = itemProps.likeCount;
 
     return (
         <Box>
