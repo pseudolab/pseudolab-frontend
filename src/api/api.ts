@@ -1,5 +1,15 @@
 const URL = "http://34.125.163.236:8000"; // TEMPORARY
 
+export const singUpUser = async (username: string) => {
+  const response = await fetch(`${URL}/api/auth/bingo/sign-up?username=${username}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.ok;
+}
+
 export const getUser = async (username: string) => {
   const response = await fetch(`${URL}/api/auth/bingo/get-user?username=${username}`);
   if (response.ok === false) {

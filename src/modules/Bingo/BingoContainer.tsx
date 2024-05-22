@@ -5,7 +5,8 @@ import {
   getSelectedWords,
   updateBingoBoard,
   createBingoBoard,
-  getUser
+  getUser,
+  singUpUser
 } from "../../api/api.ts";
 import { defafultBingoBoard, shuffleArray } from "./components/DefaultBingoBoard.ts";
 
@@ -44,6 +45,7 @@ const BingoContainer = () => {
         selected: [myWord1, myWord2, myWord3].includes(item.value) ? 1 : 0,
       });
     });
+    await singUpUser(MyID.value)
     const user = await getUser(MyID.value);
     await createBingoBoard(user.user_id, boardData);
   };
