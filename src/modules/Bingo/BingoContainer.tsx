@@ -6,7 +6,8 @@ import {
   updateBingoBoard,
   createBingoBoard,
   getUser,
-  singUpUser
+  singUpUser,
+  createUserBingoInteraction
 } from "../../api/api.ts";
 import { defafultBingoBoard, shuffleArray } from "./components/DefaultBingoBoard.ts";
 
@@ -45,6 +46,7 @@ const BingoContainer = () => {
         selected: [myWord1, myWord2, myWord3].includes(item.value) ? 1 : 0,
       });
     });
+    localStorage.setItem('myWordList', [myWord1, myWord2, myWord3].join(","));
     await singUpUser(MyID.value)
     const user = await getUser(MyID.value);
     await createBingoBoard(user.user_id, boardData);
@@ -58,6 +60,8 @@ const BingoContainer = () => {
     const user = await getUser(MyID.value);
     const opponent = await getUser(opponentID);
     updateBingoBoard(user.user_id, opponent.user_id);
+    const myWords = localStorage.getItem('myWordList');
+    await createUserBingoInteraction(myWords, user.user_id, opponent.user_id);
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOpponentID(event.target.value);
