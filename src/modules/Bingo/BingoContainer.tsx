@@ -5,7 +5,7 @@ import {
   getSelectedWords,
   updateBingoBoard,
   createBingoBoard,
-} from "../../api/api.ts";
+} from "../../api/bingo_api.ts";
 import { defafultBingoBoard } from "./components/DefaultBingoBoard.ts";
 
 const useInput = (initialValue: string) => {
@@ -14,7 +14,7 @@ const useInput = (initialValue: string) => {
     setValue(e.target.value);
   };
   return { value, onChange };
-}
+};
 
 const BingoContainer = () => {
   const [myWord1, setMyWord1] = useState("");
@@ -29,7 +29,7 @@ const BingoContainer = () => {
     { value: string; status: number }[]
   >([]);
   const [opponentID, setOpponentID] = useState("");
-  const MyID = useInput(localStorage.getItem('myID') || '');
+  const MyID = useInput(localStorage.getItem("myID") || "");
   const [userSelectedWords, setUserSelectedWords] = useState<string[]>([]);
   const initBingoBoard = async () => {
     const boardData: {
@@ -42,7 +42,7 @@ const BingoContainer = () => {
         selected: [myWord1, myWord2, myWord3].includes(item.value) ? 1 : 0,
       });
     });
-    console.log(MyID)
+    console.log(MyID);
     await createBingoBoard(MyID.value, boardData);
   };
   const refreshBingoWords = async () => {
@@ -57,8 +57,8 @@ const BingoContainer = () => {
   };
   const handleMyIDChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     MyID.onChange(event);
-    localStorage.setItem('myID', event.target.value);
-  }
+    localStorage.setItem("myID", event.target.value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
