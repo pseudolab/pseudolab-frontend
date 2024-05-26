@@ -31,6 +31,7 @@ const navItems = [
   { name: "커뮤니티", path: "/community", permission: "" },
   { name: "빌더", path: "/builder", permission: "" },
   { name: "러너", path: "/runner", permission: "" },
+  { name: "빙고", path: "/bingo", permission: "" },
 ];
 
 const Header = (props: Props) => {

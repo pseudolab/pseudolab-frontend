@@ -1,4 +1,23 @@
-const URL = "http://localhost:8000";
+const URL = "http://34.125.163.236:8000"; // TEMPORARY
+
+export const singUpUser = async (username: string) => {
+  const response = await fetch(`${URL}/api/auth/bingo/sign-up?username=${username}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.ok;
+}
+
+export const getUser = async (username: string) => {
+  const response = await fetch(`${URL}/api/auth/bingo/get-user?username=${username}`);
+  if (response.ok === false) {
+    return null;
+  }
+  const data = await response.json();
+  return data;
+}
 
 export const createBingoBoard = async (
   userId: string,
@@ -57,3 +76,14 @@ export const updateBingoBoard = async (
   );
   return response.ok;
 };
+
+export const createUserBingoInteraction = async (word_id_list: string | null, send_user_id: number, receive_user_id: number) => {
+  const response = await fetch(`${URL}/api/bingo/interactions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ word_id_list, send_user_id, receive_user_id }),
+  });
+  return response.ok;
+}

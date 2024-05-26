@@ -5,8 +5,14 @@ import {
   getSelectedWords,
   updateBingoBoard,
   createBingoBoard,
+  getUser,
+  singUpUser,
+  createUserBingoInteraction,
 } from "../../api/bingo_api.ts";
-import { defafultBingoBoard } from "./components/DefaultBingoBoard.ts";
+import {
+  defafultBingoBoard,
+  shuffleArray,
+} from "./components/DefaultBingoBoard.ts";
 
 const useInput = (initialValue: string) => {
   const [value, setValue] = useState(initialValue);
@@ -35,22 +41,36 @@ const BingoContainer = () => {
     const boardData: {
       [key: string]: { value: string; status: number; selected: number };
     } = {};
-    defafultBingoBoard.forEach((item, index) => {
+    let bingoBoard = shuffleArray(defafultBingoBoard);
+    bingoBoard.forEach((item, index) => {
       return (boardData[index] = {
         value: item.value,
         status: [myWord1, myWord2, myWord3].includes(item.value) ? 1 : 0,
         selected: [myWord1, myWord2, myWord3].includes(item.value) ? 1 : 0,
       });
     });
-    console.log(MyID);
-    await createBingoBoard(MyID.value, boardData);
+    localStorage.setItem("myWordList", [myWord1, myWord2, myWord3].join(","));
+    await singUpUser(MyID.value);
+    const user = await getUser(MyID.value);
+    await createBingoBoard(user.user_id, boardData);
   };
   const refreshBingoWords = async () => {
-    const newBingoWords = await getBingoBoard(MyID.value);
+    const user = await getUser(MyID.value);
+    const newBingoWords = await getBingoBoard(user.user_id);
     setBingoWords(newBingoWords);
   };
   const sendMyWords = async () => {
-    updateBingoBoard(MyID.value, opponentID);
+    const user = await getUser(MyID.value);
+    const opponent = await getUser(opponentID);
+    updateBingoBoard(user.user_id, opponent.user_id);
+    const myWords = localStorage.getItem("myWordList");
+    const res = await createUserBingoInteraction(
+      myWords,
+      user.user_id,
+      opponent.user_id
+    );
+
+    return res;
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOpponentID(event.target.value);
@@ -62,8 +82,9 @@ const BingoContainer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedBingoWords = await getBingoBoard(MyID.value);
-      const fetchedSelectedWords = await getSelectedWords(MyID.value);
+      const user = await getUser(MyID.value);
+      const fetchedBingoWords = await getBingoBoard(user.user_id);
+      const fetchedSelectedWords = await getSelectedWords(user.user_id);
       setBingoWords(fetchedBingoWords);
       setUserSelectedWords(fetchedSelectedWords);
     };
