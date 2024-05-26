@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Container, Input, Button, FormControl } from "@mui/material";
 import { styled } from "@mui/system";
@@ -36,7 +38,7 @@ const options = [
 
 const Wrapper = styled(Container)({
   marginTop: "4rem",
-  height: "100%"
+  height: "100%",
 });
 
 const MyInfo = styled(Container)({
@@ -76,7 +78,7 @@ type BingoPresenterProps = {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleMyIDChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onRefreshBingoWords: () => void;
-  onClickSendWords: (opponentID: string) => void;
+  onClickSendWords: (opponentID: string) => Promise<boolean>;
   onClickButton: () => void;
 };
 
@@ -85,11 +87,11 @@ const BingoPresenter = (props: BingoPresenterProps) => {
     <>
       {props.userSelectedWords.length === 0 ? (
         <Wrapper>
-            <InputBox
-              placeholder="나의 이름을 입력"
-              value={props.myID}
-              onChange={props.handleMyIDChange}
-            ></InputBox>
+          <InputBox
+            placeholder="나의 이름을 입력"
+            value={props.myID}
+            onChange={props.handleMyIDChange}
+          ></InputBox>
           <SelectBox
             label="첫 번째 단어"
             value={props.myWord1}
@@ -115,7 +117,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
             options={options}
           />
           <Button
-            onClick={async() => {
+            onClick={async () => {
               await props.onClickButton();
               window.location.reload();
             }}
@@ -140,9 +142,28 @@ const BingoPresenter = (props: BingoPresenterProps) => {
               value={props.opponentID}
               onChange={props.handleInputChange}
             ></InputBox>
-            <Button onClick={() => props.onClickSendWords(props.opponentID)}>
+            <Button
+              onClick={async () => {
+                const res = await props.onClickSendWords(props.opponentID);
+                if (res) {
+                  toast.success("상호작용에 성공했습니다.");
+                }
+              }}
+            >
               내 단어 보내기
             </Button>
+            <ToastContainer
+              position="top-right" // 알람 위치 지정
+              autoClose={3000} // 자동 off 시간
+              hideProgressBar={false} // 진행시간바 숨김
+              closeOnClick // 클릭으로 알람 닫기
+              rtl={false} // 알림 좌우 반전
+              pauseOnFocusLoss // 화면을 벗어나면 알람 정지
+              draggable // 드래그 가능
+              pauseOnHover // 마우스를 올리면 알람 정지
+              theme="light"
+              // limit={1} // 알람 개수 제한
+            />
             <Button onClick={props.onRefreshBingoWords}>내 빙고판 갱신</Button>
           </FormControl>
         </Wrapper>
