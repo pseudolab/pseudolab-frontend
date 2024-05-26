@@ -7,7 +7,7 @@ import IntroduceBuilder from "./modules/Builder/IntroduceBuilder.tsx";
 import Bingo from "./modules/Bingo/index.tsx";
 import Footer from "./modules/Footer/Footer.tsx";
 import SignUpForm from "./modules/Header/SignUpForm.tsx";
-import BoardContainer from "./modules/Community/index.tsx";
+import Board from "./modules/Community/index.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -24,7 +24,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/builder" element={<IntroduceBuilder />} />
             <Route path="/runner" element={<Test />} />
-            <Route path="/community" element={<BoardContainer />} />
+            <Route path="/community" element={<Board />} />
             <Route path="/bingo" element={<Bingo />} />
             <Route path="/signup" element={<SignUpForm />} />
             {/* <Route path="/posts" component={Posts} />
