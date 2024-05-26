@@ -23,11 +23,9 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
-  min-width: 60vh;
-  min-height: 100vh;
+  min-width: auto;
 }
 
 h1 {
