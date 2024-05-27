@@ -28,7 +28,7 @@ interface Props {
 
 const drawerWidth = window.innerWidth * 0.7;
 const navItems = [
-  { name: "커뮤니티", path: "/comunity", permission: "" },
+  { name: "커뮤니티", path: "/community", permission: "" },
   { name: "빌더", path: "/builder", permission: "" },
   { name: "러너", path: "/runner", permission: "" },
   { name: "빙고", path: "/bingo", permission: "" },
@@ -64,7 +64,7 @@ const Header = (props: Props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
   return (
-    <Box sx={{ display: "flex", height: 60 }}>
+    <Box sx={{ display: "flex" }}>
       <AppBar
         component="nav"
         elevation={0}

@@ -1,9 +1,8 @@
 #root {
-  width: 200vw;
+  width: 150vw;
   height: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 200%;
+  padding: 0;
   text-align: center;
 }
 
@@ -13,7 +12,7 @@
 }
 
 body {
-  padding-top: 70px;
+  padding-top: 95px;
   /* Header의 높이에 따라 값 조절 */
 }
 

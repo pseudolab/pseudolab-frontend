@@ -8,7 +8,7 @@ import {
   getUser,
   singUpUser,
   createUserBingoInteraction,
-} from "../../api/api.ts";
+} from "../../api/bingo_api.ts";
 import {
   defafultBingoBoard,
   shuffleArray,
