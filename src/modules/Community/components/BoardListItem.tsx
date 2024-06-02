@@ -5,6 +5,9 @@ import {
   FavoriteBorderOutlined,
 } from "@mui/icons-material";
 import type { BoardItemProps } from "../types/Board";
+import type { DateDuration } from "../../../utils/DateUtils";
+import { getDiffDuration } from "../../../utils/DateUtils";
+import { create } from "@mui/material/styles/createTransitions";
 
 const MONTH_IN_A_YEAR: number = 12;
 
@@ -12,32 +15,24 @@ const BoardListItem = (itemProps: BoardItemProps) => {
   const title = itemProps.title;
   const author = itemProps.author;
   const createdAt: number = itemProps.created_at;
-  const diffMs = Date.now() - createdAt;
-  const diffDate = new Date(diffMs);
 
   let createdMessage = "";
-  const diffMonth = diffDate.getMonth();
-  const diffYear = Math.floor(diffMonth / MONTH_IN_A_YEAR);
-  const diffDay = diffDate.getDay();
-  const diffHour = diffDate.getHours();
-  const diffMinute = diffDate.getMinutes();
-  if (diffYear > 0) createdMessage = `${diffYear}년 전`;
-  else if (diffMonth > 0) createdMessage = `${diffMonth}개월 전`;
-  else if (diffDay > 0) createdMessage = `${diffDay}일 전`;
-  else if (diffHour > 0) createdMessage = `${diffHour}시간 전`;
-  else if (diffMinute > 0) createdMessage = `${diffMinute}분 전`;
-  else createdMessage = `${diffDate.getSeconds()}초 전`;
-  console.log(diffDate.getMonth());
-  console.log(diffDate.getDay());
+  const dateDuration: DateDuration = getDiffDuration(new Date(createdAt), new Date(Date.now()))
+  if (dateDuration.years > 0) createdMessage = `${dateDuration.years}년 전`;
+  else if (dateDuration.months > 0) createdMessage = `${dateDuration.months}개월 전`;
+  else if (dateDuration.days > 0) createdMessage = `${dateDuration.days}일 전`;
+  else if (dateDuration.hours > 0) createdMessage = `${dateDuration.hours}시간 전`;
+  else if (dateDuration.minutes > 0) createdMessage = `${dateDuration.minutes}분 전`;
+  else createdMessage = `${dateDuration.seconds}초 전`;
 
   const viewCount = itemProps.view_count;
   const commentCount = itemProps.comment_count;
   const likeCount = itemProps.like_count;
 
   return (
-    <Card>
+    <Card sx={{ width: "auto", height: "7rem" }}>
       <CardContent>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {title}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">

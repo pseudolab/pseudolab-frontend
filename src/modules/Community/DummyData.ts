@@ -6,7 +6,8 @@ const PAGE_COUNT: number = 50;
 let DUMMY_BOARD_ITEMS: BoardItemProps[] = []
 for (let i: number = 0; i < DUMMY_COUNT; ++i) {
   const reverse_index = DUMMY_COUNT - i;
-  const created_at = Date.now() - i * 10000;
+  const created_at = Date.now() - (i * 8000000);
+  //console.log(`${i} ${new Date(created_at)}`)
   DUMMY_BOARD_ITEMS.push({
     id: reverse_index,
     title: `테스트${i}`,

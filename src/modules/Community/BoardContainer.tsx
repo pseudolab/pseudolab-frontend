@@ -17,9 +17,8 @@ const BoardContainer = () => {
   const handlePageChange = (pageNum: number) => {
     navigate(`?page=${pageNum}`);
   };
-
+  const totalPages = boardListResponse.all_count / 50;
   const renderPageButtons = (currentPage: number) => {
-    const totalPages = 10; // 예시로 총 10페이지가 있다고 가정합니다.
     const maxVisiblePages = 5; // 한 번에 보일 페이지 버튼 수
     let startPage = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
     let endPage = startPage + maxVisiblePages - 1;
@@ -37,10 +36,10 @@ const BoardContainer = () => {
           key={i}
           variant={i === currentPage ? "contained" : "outlined"}
           onClick={() => handlePageChange(i)}
-          style={{ margin: '0 4px' }}
+          style={{ margin: '0 0.1rem', minWidth: '4vw', maxWidth: '4vw', }}
         >
           {i}
-        </Button>
+        </Button >
       );
     }
 
@@ -57,7 +56,7 @@ const BoardContainer = () => {
         <Box display="flex" alignItems="center" mx={2}>
           {renderPageButtons(page)}
         </Box>
-        <Button variant="contained" onClick={() => handlePageChange(page + 1)}>
+        <Button variant="contained" onClick={() => handlePageChange(page + 1)} disabled={page >= totalPages}>
           다음
         </Button>
       </Box>
