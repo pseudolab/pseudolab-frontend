@@ -50,9 +50,12 @@ const BingoContainer = () => {
       });
     });
     localStorage.setItem("myWordList", [myWord1, myWord2, myWord3].join(","));
-    await singUpUser(MyID.value);
-    const user = await getUser(MyID.value);
-    await createBingoBoard(user.user_id, boardData);
+
+    if (MyID.value != "") {
+      await singUpUser(MyID.value);
+      const user = await getUser(MyID.value);
+      await createBingoBoard(user.user_id, boardData);
+    }
   };
   const refreshBingoWords = async () => {
     const user = await getUser(MyID.value);
