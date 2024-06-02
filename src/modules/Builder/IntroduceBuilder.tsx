@@ -103,16 +103,18 @@ const IntroduceBuilder = () => {
         </p>
       </Description>
       <Button
+        
         sx={{
           width: "100%",
           height: "50px",
           position: "fixed",
           left: 0,
           right: 0,
+          bottom: 0,
         }}
         variant="contained"
         color="primary"
-        href="#"
+        href="/builder/apply"
       >
         빌더 지원하러 가기
       </Button>
