@@ -9,7 +9,6 @@ const BoardList = (itemsProp: BoardItemListProp) => {
         {itemsProp.items.map((item: BoardItemProps, index: number) => (
           <Grid item xs={12} key={index}>
             <BoardListItem {...item} />
-            {console.log(`Index: ${index}`)}
           </Grid>
         ))}
       </Grid>

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import BoardList from "./components/BoardList";
-import type { BoardItemProps, BoardItemListProp } from "./types/Board";
+import type { BoardItemProps } from "./types/Board";
 
 const DUMMY_BOARD_LIST: BoardItemProps[] = [
   {
@@ -24,9 +24,12 @@ const DUMMY_BOARD_LIST: BoardItemProps[] = [
 
 const BoardContainer = () => {
   const [searchParams] = useSearchParams();
-  const page = searchParams.get("page");
-  const count = searchParams.get("count");
 
+  console.log("보드 그리기");
+  let page = searchParams.get("page");
+  let count = searchParams.get("count");
+
+  const boardPageCount: number = 10;
   const boardItemList: BoardItemProps[] = DUMMY_BOARD_LIST;
 
   return (

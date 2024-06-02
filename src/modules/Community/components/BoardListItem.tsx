@@ -4,7 +4,6 @@ import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
 } from "@mui/icons-material";
-import { useState } from "react";
 import type { BoardItemProps } from "../types/Board";
 
 const MONTH_IN_A_YEAR: number = 12;
