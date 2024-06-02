@@ -10,6 +10,7 @@ interface InputFieldProps {
   fullWidth?: boolean;
   placeholder?: string;
   multiline?: boolean;
+  onChange: (e: any) => void;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -20,6 +21,7 @@ const InputField: React.FC<InputFieldProps> = ({
   fullWidth = true,
   placeholder = '',
   multiline = false,
+  onChange,
 }) => {
   return (
     <Box
@@ -37,6 +39,7 @@ const InputField: React.FC<InputFieldProps> = ({
         defaultValue={defaultValue}
         placeholder={placeholder}
         multiline={multiline}
+        onChange={onChange}
       />
     </Box>
   );

@@ -25,6 +25,7 @@ interface MultipleChoiceFieldProps {
   fullWidth?: boolean;
   isMultipleOption?: boolean;
   isOtherOption?: boolean;
+  onChange?: (e: any) => void;
 }
 
 const MultipleChoiceField: FC<MultipleChoiceFieldProps> = ({
@@ -35,6 +36,7 @@ const MultipleChoiceField: FC<MultipleChoiceFieldProps> = ({
   fullWidth = true,
   isMultipleOption = false,
   isOtherOption = false,
+  onChange,
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>(
     defaultValue ? [defaultValue] : []
@@ -79,7 +81,7 @@ const MultipleChoiceField: FC<MultipleChoiceFieldProps> = ({
                   control={
                     <Checkbox
                       checked={selectedOptions.includes(option.value)}
-                      onChange={handleChange}
+                      onChange={onChange}
                       value={option.value}
                     />
                   }
@@ -107,14 +109,14 @@ const MultipleChoiceField: FC<MultipleChoiceFieldProps> = ({
                 <FormControlLabel
                   key={option.value}
                   value={option.value}
-                  control={<Radio onChange={handleRadioChange} />}
+                  control={<Radio onChange={onChange} />}
                   label={option.label}
                 />
               ))}
               {isOtherOption && (
                 <FormControlLabel
                   value="other"
-                  control={<Radio onChange={handleRadioChange} />}
+                  control={<Radio onChange={onChange} />}
                   label="기타"
                 />
               )}
