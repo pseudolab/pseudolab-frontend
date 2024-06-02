@@ -12,7 +12,25 @@ export interface BoardListProp {
   items: BoardItemProps[];
 }
 
+export interface BoardViewProps extends BoardItemProps {
+  contents: string;
+  comment_list: CommentProps[],
+}
+
+export interface CommentProps {
+  id: number,
+  author: string;
+  contents: string,
+  created_at: number;
+}
+
 export interface BoardListResponse {
   items: BoardItemProps[];
   all_count: number;
+}
+
+export interface BoardResponse {
+  id: number,
+  contents: string,
+  comment_list: CommentProps[],
 }

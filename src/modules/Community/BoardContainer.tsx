@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import BoardList from "./components/BoardList";
-import type { BoardListResponse } from "./types/Board";
+import type { BoardListResponse } from "./types/BoardTypes";
 import { getDummyBoardListResponse } from "./DummyData";
 
 const BoardContainer = () => {

@@ -4,7 +4,7 @@ import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
 } from "@mui/icons-material";
-import type { BoardItemProps } from "../types/Board";
+import type { BoardItemProps } from "../types/BoardTypes";
 import type { DateDuration } from "../../../utils/DateUtils";
 import { getDiffDuration } from "../../../utils/DateUtils";
 import { create } from "@mui/material/styles/createTransitions";

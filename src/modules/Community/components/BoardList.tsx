@@ -1,5 +1,5 @@
 import { Box, Container, Grid } from "@mui/material";
-import type { BoardItemProps, BoardListProp } from "../types/Board";
+import type { BoardItemProps, BoardListProp } from "../types/BoardTypes";
 import BoardListItem from "./BoardListItem";
 
 const BoardList = (itemsProp: BoardListProp) => {

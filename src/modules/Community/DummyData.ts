@@ -1,4 +1,4 @@
-import type { BoardItemProps, BoardListResponse } from "./types/Board";
+import type { BoardItemProps, BoardListResponse } from "./types/BoardTypes";
 
 const DUMMY_COUNT: number = 1000;
 const PAGE_COUNT: number = 50;
