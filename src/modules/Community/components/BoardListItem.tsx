@@ -7,11 +7,16 @@ import {
 import type { BoardItemProps } from "../types/BoardTypes";
 import type { DateDuration } from "../../../utils/DateUtils";
 import { getDiffDuration } from "../../../utils/DateUtils";
-import { create } from "@mui/material/styles/createTransitions";
+import { useNavigate } from 'react-router-dom';
 
 const MONTH_IN_A_YEAR: number = 12;
 
 const BoardListItem = (itemProps: BoardItemProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/community/${itemProps.id}`, { state: itemProps }); // 경로 이동
+  };
+
   const title = itemProps.title;
   const author = itemProps.author;
   const createdAt: number = itemProps.created_at;
@@ -30,7 +35,16 @@ const BoardListItem = (itemProps: BoardItemProps) => {
   const likeCount = itemProps.like_count;
 
   return (
-    <Card sx={{ width: "auto", height: "7rem" }}>
+    <Card sx={{
+      width: "auto",
+      height: "7rem",
+      cursor: "pointer",
+      transition: "transform 0.2s, box-shadow 0.2s",
+      '&:hover': {
+        transform: "scale(1.02)",
+        boxShadow: 3,
+      },
+    }} onClick={handleClick}>
       <CardContent>
         <Typography variant="h6" component="div">
           {title}
