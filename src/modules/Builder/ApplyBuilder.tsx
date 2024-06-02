@@ -3,17 +3,63 @@ import InputField from "../../components/common/InputField";
 import MultipleChoiceField from "../../components/common/MultipleChoiceField";
 import PrivacyPolicy from "./component/PrivacyPolicy";
 import BuilderRules from "./component/BuilderRules";
+import { useState } from "react";
 
 const ApplyBuilder = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    name: "",
+    phone: "",
+    introduceMe: "",
+    wasBuilder: false,
+    discordId: "",
+    notionId: "",
+    portfolio: "",
+    role: "",
+    buildName: "",
+    buildDescription: "",
+    buildReason: "",
+    buildGain: "",
+    buildResearchMember: "",
+    expectation: "",
+    question: "",
+    availability: "",
+    isBuilder: true,
+    ruleAgree: true,
+    privacyAgree: true,
+  });
+
+  const handleChange = (id: string, value: any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    console.log(formData);
+  };
+
   return (
     <>
       <h1>빌더 지원서</h1>
-      <InputField id="email" label="이메일" placeholder="이메일" />
-      <InputField id="name" label="이름" placeholder="이름" />
+      <InputField
+        id="email"
+        label="이메일"
+        placeholder="이메일"
+        onChange={(e) => handleChange("email", e.target.value)}
+      />
+      <InputField
+        id="name"
+        label="이름"
+        placeholder="이름"
+        onChange={(e) => handleChange("name", e.target.value)}
+      />
       <InputField
         id="phone"
         label="연락처(000-0000-0000)"
         placeholder="연락처"
+        onChange={(e) => handleChange("phone", e.target.value)}
       />
       <InputField
         id="introduce-me"
@@ -21,48 +67,61 @@ const ApplyBuilder = () => {
         placeholder="3줄 자기소개"
         multiline={true}
         rows={3}
+        onChange={(e) => handleChange("introduceMe", e.target.value)}
       />
       <MultipleChoiceField
         id="was-builder"
         label="이전에 빌더로 활동하신 적 있으신가요?"
         options={[
-          { value: "예", label: "yes" },
-          { value: "아니오", label: "no" },
+          { value: "y", label: "예" },
+          { value: "n", label: "아니오" },
         ]}
+        onChange={(e) => {
+          handleChange("wasBuilder", (e.target.value === "y" ? true : false));
+        }}
       />
       <InputField
         id="discordId"
         label="디스코드 ID"
         placeholder="디스코드 ID"
+        onChange={(e) => handleChange("discordId", e.target.value)}
       />
       <InputField
         id="notionId"
         label="노션 ID(이메일 형태; 이메일 주소가 아니면 초대가 어렵습니다."
         placeholder="노션 ID"
+        onChange={(e) => handleChange("notionId", e.target.value)}
       />
       <InputField
         id="portfolio"
         label="자신을 표현할 수 있는 링크를 하나 공유해주세요!"
         placeholder="e.g. linkedIn, github, blog, CV 등"
+        onChange={(e) => handleChange("portfolio", e.target.value)}
       />
       <MultipleChoiceField
         id="role"
         label="지원하고자 하는 역할은 무엇인가요?"
         options={[
-          { value: "아카데미 빌더", label: "academy" },
-          { value: "펠로우십 빌더", label: "fellowship" },
-          { value: "커뮤니티 빌더", label: "comminity" },
-          { value: "데브 빌더", label: "dev" },
+          { value: "academy", label: "acad아카데미 빌더emy" },
+          { value: "fellowship", label: "펠로우십 빌더" },
+          { value: "community", label: "커뮤니티 빌더" },
+          { value: "dev", label: "데브 빌더" },
           {
-            value: "리서치팀으로 전환(1기수 수료 후, 2기수 이상 활동 희망시",
-            label: "research",
+            value: "research",
+            label: "리서치팀으로 전환(1기수 수료 후, 2기수 이상 활동 희망시",
           },
         ]}
+        onChange={(e) => {
+          handleChange("role", e.target.value);
+        }}
       />
       <InputField
         id="build-name"
         label='지원하신 역할로 진행하실 스터디/프로젝트명을 알려주세요. (리서치팀인 경우 팀명과 프로젝트 명을 각각 적어주셍. "팀명/프로젝트명" 형태)'
         placeholder=""
+        onChange={(e) => {
+          handleChange("buildName", e.target.value);
+        }}
       />
       <InputField
         id="build-description"
@@ -73,6 +132,9 @@ const ApplyBuilder = () => {
         placeholder=""
         multiline={true}
         rows={3}
+        onChange={(e) => {
+          handleChange("buildDescription", e.target.value);
+        }}
       />
       <InputField
         id="build-reason"
@@ -80,6 +142,9 @@ const ApplyBuilder = () => {
         placeholder=""
         multiline={true}
         rows={3}
+        onChange={(e) => {
+          handleChange("buildReason", e.target.value);
+        }}
       />
       <InputField
         id="build-gain"
@@ -87,6 +152,9 @@ const ApplyBuilder = () => {
         placeholder=""
         multiline={true}
         rows={3}
+        onChange={(e) => {
+          handleChange("buildGain", e.target.value);
+        }}
       />
       <InputField
         id="build-research-member"
@@ -95,6 +163,9 @@ const ApplyBuilder = () => {
         placeholder=""
         multiline={true}
         rows={3}
+        onChange={(e) => {
+          handleChange("buildResearchMember", e.target.value);
+        }}
       />
       <InputField
         id="expectation"
@@ -102,6 +173,9 @@ const ApplyBuilder = () => {
         placeholder=""
         multiline={true}
         rows={3}
+        onChange={(e) => {
+          handleChange("expectation", e.target.value);
+        }}
       />
       <InputField
         id="question"
@@ -109,9 +183,12 @@ const ApplyBuilder = () => {
         placeholder=""
         multiline={true}
         rows={3}
+        onChange={(e) => {
+          handleChange("question", e.target.value);
+        }}
       />
       <MultipleChoiceField
-        id=""
+        id="availability"
         label="가짜연구소의 대부분의 모임 및 활동들은 주 1회 이루어집니다. 2024년 상반기에 주 1회 모임을 이끄시거나 참여하시는 것이 가능하신지 생각해봐주세요!"
         options={[
           {
@@ -129,14 +206,20 @@ const ApplyBuilder = () => {
           },
         ]}
         isOtherOption={true}
+        onChange={(e) => {
+          handleChange("availability", e.target.value);
+        }}
       />
       <MultipleChoiceField
         id="is-builder"
         label='본 신청은 스터디나 일반 참가자가 아닌 "운영진"을 신청하는 것임을 확인하셨나요?'
         options={[
-          { value: "예", label: "yes" },
-          { value: "아니오", label: "no" },
-        ]}
+            { value: "y", label: "예" },
+            { value: "n", label: "아니오" },
+          ]}
+          onChange={(e) => {
+            handleChange("wasBuilder", (e.target.value === "y" ? true : false));
+          }}
       />
       <Box
         sx={{
@@ -156,17 +239,23 @@ const ApplyBuilder = () => {
         id="rule-agree"
         label="위의 규칙에 동의하십니까?"
         options={[
-          { value: "예", label: "yes" },
-          { value: "아니오", label: "no" },
+          { value: "y", label: "예" },
+          { value: "n", label: "아니오" },
         ]}
+        onChange={(e) => {
+            handleChange("wasBuilder", (e.target.value === "y" ? true : false));
+          }}
       />
       <MultipleChoiceField
         id="privacy-agree"
         label="아래 개인정보 처리방침에 동의하십니까?"
         options={[
-          { value: "예", label: "yes" },
-          { value: "아니오", label: "no" },
-        ]}
+            { value: "y", label: "예" },
+            { value: "n", label: "아니오" },
+          ]}
+          onChange={(e) => {
+            handleChange("wasBuilder", (e.target.value === "y" ? true : false));
+          }}
       />
 
       <Box
@@ -183,7 +272,12 @@ const ApplyBuilder = () => {
       >
         <PrivacyPolicy />
       </Box>
-      <Button fullWidth={true} variant="contained" color="primary">
+      <Button
+        fullWidth={true}
+        variant="contained"
+        color="primary"
+        onClick={handleSubmit}
+      >
         제출하기
       </Button>
     </>
