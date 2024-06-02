@@ -11,7 +11,7 @@ const MONTH_IN_A_YEAR: number = 12;
 const BoardListItem = (itemProps: BoardItemProps) => {
   const title = itemProps.title;
   const author = itemProps.author;
-  const createdAt: number = itemProps.createdAt;
+  const createdAt: number = itemProps.created_at;
   const diffMs = Date.now() - createdAt;
   const diffDate = new Date(diffMs);
 
@@ -30,9 +30,9 @@ const BoardListItem = (itemProps: BoardItemProps) => {
   console.log(diffDate.getMonth());
   console.log(diffDate.getDay());
 
-  const viewCount = itemProps.viewCount;
-  const commentCount = itemProps.commentCount;
-  const likeCount = itemProps.likeCount;
+  const viewCount = itemProps.view_count;
+  const commentCount = itemProps.comment_count;
+  const likeCount = itemProps.like_count;
 
   return (
     <Card>

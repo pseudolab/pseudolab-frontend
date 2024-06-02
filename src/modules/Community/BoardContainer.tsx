@@ -1,40 +1,66 @@
-import { Box } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
+import { Box, Button } from "@mui/material";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import BoardList from "./components/BoardList";
-import type { BoardItemProps } from "./types/Board";
-
-const DUMMY_BOARD_LIST: BoardItemProps[] = [
-  {
-    title: "테스트1",
-    author: "kwang1",
-    createdAt: new Date("2024-03-10T13:19:11+0000").getTime(),
-    viewCount: 5,
-    commentCount: 2,
-    likeCount: 3,
-  },
-  {
-    title: "테스트2",
-    author: "kk1",
-    createdAt: new Date("2024-05-20T13:19:11+0000").getTime(),
-    viewCount: 10,
-    commentCount: 3,
-    likeCount: 10,
-  },
-];
+import type { BoardListResponse } from "./types/Board";
+import { getDummyBoardListResponse } from "./DummyData";
 
 const BoardContainer = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   console.log("보드 그리기");
-  let page = searchParams.get("page");
-  let count = searchParams.get("count");
+  const pageParam = searchParams.get("page");
+  const page = (pageParam === null) ? 1 : parseInt(pageParam);
+  // let count = searchParams.get("count"); // 50개로 강제 설정.
+  const boardListResponse: BoardListResponse = getDummyBoardListResponse(page)
 
-  const boardPageCount: number = 10;
-  const boardItemList: BoardItemProps[] = DUMMY_BOARD_LIST;
+  const handlePageChange = (pageNum: number) => {
+    navigate(`?page=${pageNum}`);
+  };
+
+  const renderPageButtons = (currentPage: number) => {
+    const totalPages = 10; // 예시로 총 10페이지가 있다고 가정합니다.
+    const maxVisiblePages = 5; // 한 번에 보일 페이지 버튼 수
+    let startPage = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
+    let endPage = startPage + maxVisiblePages - 1;
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(endPage - maxVisiblePages + 1, 1);
+    }
+
+    let pageButtons = [];
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageButtons.push(
+        <Button
+          key={i}
+          variant={i === currentPage ? "contained" : "outlined"}
+          onClick={() => handlePageChange(i)}
+          style={{ margin: '0 4px' }}
+        >
+          {i}
+        </Button>
+      );
+    }
+
+    return pageButtons;
+  };
 
   return (
     <Box>
-      <BoardList items={boardItemList}></BoardList>
+      <BoardList items={boardListResponse.items}></BoardList>
+      <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
+        <Button variant="contained" onClick={() => handlePageChange(page - 1)} disabled={page <= 1}>
+          이전
+        </Button>
+        <Box display="flex" alignItems="center" mx={2}>
+          {renderPageButtons(page)}
+        </Box>
+        <Button variant="contained" onClick={() => handlePageChange(page + 1)}>
+          다음
+        </Button>
+      </Box>
     </Box>
   );
 };

@@ -1,12 +1,29 @@
-export interface BoardItemProps {
+export interface BoardProps {
+  id: number;
   title: string;
   author: string;
-  createdAt: number;
-  viewCount: number;
-  commentCount: number;
-  likeCount: number;
+  created_at: number;
+  view_count: number;
+  comment_count: number;
+  like_count: number;
+  contents: string;
 }
 
-export interface BoardItemListProp {
+export interface BoardItemProps {
+  id: number;
+  title: string;
+  author: string;
+  created_at: number;
+  view_count: number;
+  comment_count: number;
+  like_count: number;
+}
+
+export interface BoardListProp {
   items: BoardItemProps[];
+}
+
+export interface BoardListResponse {
+  items: BoardItemProps[];
+  all_count: number;
 }
