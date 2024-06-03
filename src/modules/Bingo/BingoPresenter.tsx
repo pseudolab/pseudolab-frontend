@@ -46,7 +46,7 @@ const MyInfo = styled(Container)({
 });
 
 const BingoContainer = styled(Container)({
-  marginTop: "2rem",
+  marginTop: "1rem",
   display: "grid",
   gridTemplateColumns: "repeat(5, 1fr)",
   gridTemplateRows: "repeat(5, 1fr)",
@@ -54,6 +54,22 @@ const BingoContainer = styled(Container)({
   justifyContent: "center",
   alignItems: "center",
   aspectRatio: "1/1",
+});
+
+const RecentSendUserWrapper = styled(Container)({
+  marginTop: "1rem",
+  fontSize: "1rem",
+});
+
+const RecentSendUser = styled("span")({
+  fontWeight: "bold",
+  "& span": {
+    background: "linear-gradient(to bottom, #ffff99, #ffcc33)",
+    backgroundSize: "100% 200%",
+    backgroundPosition: "left bottom",
+    padding: "0 5px",
+    borderRadius: "5px",
+  },
 });
 
 const InputBox = styled(Input)({
@@ -75,6 +91,8 @@ type BingoPresenterProps = {
   myWord2: string;
   myWord3: string;
   handleWordChange: WordChangeHandlers;
+  recentWords: string;
+  recentSendUser: string;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleMyIDChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onRefreshBingoWords: () => void;
@@ -118,19 +136,18 @@ const BingoPresenter = (props: BingoPresenterProps) => {
           />
           <Button
             onClick={async () => {
-              if ( props.myID === "" ){
+              if (props.myID === "") {
                 toast.error("나의 닉네임을 입력해주세요.");
-                return
+                return;
               }
               if (
                 props.myWord1 === "" &&
                 props.myWord2 === "" &&
-                props.myWord3 === "" 
+                props.myWord3 === ""
               ) {
                 toast.error("단어를 선택해주세요.");
-                return
-              }
-              else{
+                return;
+              } else {
                 await props.onClickButton();
                 window.location.reload();
               }
@@ -139,17 +156,17 @@ const BingoPresenter = (props: BingoPresenterProps) => {
             단어 선택 완료
           </Button>
           <ToastContainer
-              position="top-right" // 알람 위치 지정
-              autoClose={3000} // 자동 off 시간
-              hideProgressBar={false} // 진행시간바 숨김
-              closeOnClick // 클릭으로 알람 닫기
-              rtl={false} // 알림 좌우 반전
-              pauseOnFocusLoss // 화면을 벗어나면 알람 정지
-              draggable // 드래그 가능
-              pauseOnHover // 마우스를 올리면 알람 정지
-              theme="light"
-              // limit={1} // 알람 개수 제한
-            />
+            position="top-right" // 알람 위치 지정
+            autoClose={3000} // 자동 off 시간
+            hideProgressBar={false} // 진행시간바 숨김
+            closeOnClick // 클릭으로 알람 닫기
+            rtl={false} // 알림 좌우 반전
+            pauseOnFocusLoss // 화면을 벗어나면 알람 정지
+            draggable // 드래그 가능
+            pauseOnHover // 마우스를 올리면 알람 정지
+            theme="light"
+            // limit={1} // 알람 개수 제한
+          />
         </Wrapper>
       ) : (
         <Wrapper>
@@ -157,9 +174,26 @@ const BingoPresenter = (props: BingoPresenterProps) => {
           {props.userSelectedWords.map((word) => (
             <LongTextBox key={word} text={word} />
           ))}
+          <RecentSendUserWrapper>
+            {props.recentSendUser === "" ? (
+              ""
+            ) : (
+              <>
+                <RecentSendUser>
+                  <span>{`${props.recentSendUser}`}</span>
+                </RecentSendUser>
+                <span> 님과 이야기를 나누었어요!</span>
+              </>
+            )}
+          </RecentSendUserWrapper>
           <BingoContainer>
             {props.bingoWords.map(({ value, status }) => (
-              <SqaureTextBox key={value} value={value} status={status} />
+              <SqaureTextBox
+                key={value}
+                value={value}
+                status={status}
+                recent_list={props.recentWords.split(",")}
+              />
             ))}
           </BingoContainer>
           <FormControl>
