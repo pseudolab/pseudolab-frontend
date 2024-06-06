@@ -15,13 +15,13 @@ for (let i: number = 0; i < DUMMY_COUNT; ++i) {
     view_count: Math.floor(Math.random() * 50),
     comment_count: 0,
     like_count: Math.floor(Math.random() * 50),
-  })
+  });
 }
 DUMMY_BOARD_ITEMS = DUMMY_BOARD_ITEMS.reverse()
 
 let DUMMY_BOARD_CONTENTS_LIST: string[] = []
 for (let i: number = 0; i < DUMMY_COUNT; ++i) {
-  DUMMY_BOARD_CONTENTS_LIST.push(`컨텐츠 ${i}`)
+  DUMMY_BOARD_CONTENTS_LIST.push(`컨텐츠 ${i}`);
 }
 
 let commentIndex = 0;
@@ -42,9 +42,8 @@ for (let i: number = 0; i < DUMMY_COUNT; ++i) {
 
   const commentList: CommentProps[] | undefined = DUMMY_BOARD_COMMMENT_LIST.get(i)
   if (commentList !== undefined)
-    DUMMY_BOARD_ITEMS[id].comment_count = commentList.length
+    DUMMY_BOARD_ITEMS[id].comment_count = commentList.length;
 }
-
 
 export let getDummyBoardListResponse = (page: number): BoardListResponse => {
   const pageStart = (page - 1) * PAGE_COUNT
@@ -54,7 +53,7 @@ export let getDummyBoardListResponse = (page: number): BoardListResponse => {
   };
 }
 
-export let getDummyBoardContentsResponse = (id: number) => {
+export let getDummyBoardContentsResponse = (id: number): string => {
   return DUMMY_BOARD_CONTENTS_LIST[id];
 }
 
@@ -62,5 +61,5 @@ export let getDummyBoardCommentsResponse = (board_id: number): CommentProps[] =>
   const commentList: CommentProps[] | undefined = DUMMY_BOARD_COMMMENT_LIST.get(board_id)
   if (commentList === undefined)
     return []
-  return commentList
+  return commentList;
 }
