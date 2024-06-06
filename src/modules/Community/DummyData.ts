@@ -29,9 +29,10 @@ let commentIndex = 0;
 let DUMMY_BOARD_COMMMENT_LIST: Map<number, CommentProps[]> = new Map<number, CommentProps[]>()
 for (let i: number = 0; i < DUMMY_COUNT; ++i) {
   const commentCount: number = Math.floor(Math.random() * 5) + 2
-  DUMMY_BOARD_COMMMENT_LIST.set(i, [])
+  const id = DUMMY_BOARD_ITEMS[i].id
+  DUMMY_BOARD_COMMMENT_LIST.set(id, [])
   for (let j: number = 0; j < commentCount; ++j) {
-    DUMMY_BOARD_COMMMENT_LIST.get(i)?.push({
+    DUMMY_BOARD_COMMMENT_LIST.get(id)?.push({
       id: ++commentIndex,
       author: `${i + j}`,
       contents: `댓글 ${j}`,
@@ -41,8 +42,9 @@ for (let i: number = 0; i < DUMMY_COUNT; ++i) {
 
   const commentList: CommentProps[] | undefined = DUMMY_BOARD_COMMMENT_LIST.get(i)
   if (commentList !== undefined)
-    DUMMY_BOARD_ITEMS[i].comment_count = commentList.length
+    DUMMY_BOARD_ITEMS[id].comment_count = commentList.length
 }
+
 
 export let getDummyBoardListResponse = (page: number): BoardListResponse => {
   const pageStart = (page - 1) * PAGE_COUNT
