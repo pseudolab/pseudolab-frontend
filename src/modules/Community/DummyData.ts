@@ -5,11 +5,10 @@ const PAGE_COUNT: number = 50;
 
 let DUMMY_BOARD_ITEMS: BoardItemProps[] = []
 for (let i: number = 0; i < DUMMY_COUNT; ++i) {
-  const reverse_index = DUMMY_COUNT - i - 1;
   const created_at = Date.now() - (i * 8000000);
   //console.log(`${i} ${new Date(created_at)}`)
   DUMMY_BOARD_ITEMS.push({
-    id: reverse_index,
+    id: i,
     title: `테스트${i}`,
     author: `${i}`,
     created_at: created_at,
@@ -18,6 +17,7 @@ for (let i: number = 0; i < DUMMY_COUNT; ++i) {
     like_count: Math.floor(Math.random() * 50),
   })
 }
+DUMMY_BOARD_ITEMS = DUMMY_BOARD_ITEMS.reverse()
 
 let DUMMY_BOARD_CONTENTS_LIST: string[] = []
 for (let i: number = 0; i < DUMMY_COUNT; ++i) {
