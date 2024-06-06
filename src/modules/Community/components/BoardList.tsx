@@ -1,10 +1,10 @@
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import type { BoardItemProps, BoardListProp } from "../types/BoardTypes";
 import BoardListItem from "./BoardListItem";
 
 const BoardList = (itemsProp: BoardListProp) => {
   return (
-    <Container>
+    <Box my={4}>
       <Grid container spacing={2}>
         {itemsProp.items.map((item: BoardItemProps, index: number) => (
           <Grid item xs={12} key={index}>
@@ -12,7 +12,7 @@ const BoardList = (itemsProp: BoardListProp) => {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Box>
   );
 };
 

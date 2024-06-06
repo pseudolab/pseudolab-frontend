@@ -1,12 +1,14 @@
 import { Container, Box, Typography, TextField, Button, Divider, List, ListItem, ListItemText } from '@mui/material';
 import type { BoardItemProps } from './types/BoardTypes';
 import { useLocation } from 'react-router-dom';
-import { getDummyBoardContentsResponse } from './DummyData';
+import { getDummyBoardCommentsResponse, getDummyBoardContentsResponse } from './DummyData';
+import CommentList from './components/CommentList';
 
 const BoardView = () => {
     const { state } = useLocation()
     const itemProps: BoardItemProps = state;
     const contents = getDummyBoardContentsResponse(itemProps.id);
+    const commentList = getDummyBoardCommentsResponse(itemProps.id);
 
     return (
         <Container maxWidth="md">
@@ -39,15 +41,7 @@ const BoardView = () => {
                 </Box>
                 <Divider />
                 <Box my={4}>
-                    <List>
-                        <ListItem>
-                            <ListItemText primary="댓글 내용 1" secondary="작성자 1" />
-                        </ListItem>
-                        <Divider component="li" />
-                        <ListItem>
-                            <ListItemText primary="댓글 내용 2" secondary="작성자 2" />
-                        </ListItem>
-                    </List>
+                    <CommentList items={commentList} />
                 </Box>
 
             </Box>
