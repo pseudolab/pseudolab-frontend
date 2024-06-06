@@ -5,11 +5,9 @@ import {
   FavoriteBorderOutlined,
 } from "@mui/icons-material";
 import type { BoardItemProps } from "../types/BoardTypes";
-import type { DateDuration } from "../../../utils/DateUtils";
-import { getDiffDuration } from "../../../utils/DateUtils";
+import { getCreatedDurationMessage } from "../../../utils/DateUtils";
 import { useNavigate } from 'react-router-dom';
 
-const MONTH_IN_A_YEAR: number = 12;
 
 const BoardListItem = (itemProps: BoardItemProps) => {
   const navigate = useNavigate();
@@ -20,16 +18,7 @@ const BoardListItem = (itemProps: BoardItemProps) => {
   const title = itemProps.title;
   const author = itemProps.author;
   const createdAt: number = itemProps.created_at;
-
-  let createdMessage = "";
-  const dateDuration: DateDuration = getDiffDuration(new Date(createdAt), new Date(Date.now()))
-  if (dateDuration.years > 0) createdMessage = `${dateDuration.years}년 전`;
-  else if (dateDuration.months > 0) createdMessage = `${dateDuration.months}개월 전`;
-  else if (dateDuration.days > 0) createdMessage = `${dateDuration.days}일 전`;
-  else if (dateDuration.hours > 0) createdMessage = `${dateDuration.hours}시간 전`;
-  else if (dateDuration.minutes > 0) createdMessage = `${dateDuration.minutes}분 전`;
-  else createdMessage = `${dateDuration.seconds}초 전`;
-
+  const createdMessage = getCreatedDurationMessage(new Date(createdAt), new Date(Date.now()));
   const viewCount = itemProps.view_count;
   const commentCount = itemProps.comment_count;
   const likeCount = itemProps.like_count;

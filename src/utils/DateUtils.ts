@@ -35,3 +35,16 @@ export const getDiffDuration = (startDate: Date, endDate: Date): DateDuration =>
         seconds: seconds,
     }
 }
+
+export const getCreatedDurationMessage = (startDate: Date, endDate: Date): string => {
+    let createdMessage: string = "";
+    const dateDuration: DateDuration = getDiffDuration(startDate, endDate)
+    if (dateDuration.years > 0) createdMessage = `${dateDuration.years}년 전`;
+    else if (dateDuration.months > 0) createdMessage = `${dateDuration.months}개월 전`;
+    else if (dateDuration.days > 0) createdMessage = `${dateDuration.days}일 전`;
+    else if (dateDuration.hours > 0) createdMessage = `${dateDuration.hours}시간 전`;
+    else if (dateDuration.minutes > 0) createdMessage = `${dateDuration.minutes}분 전`;
+    else createdMessage = `${dateDuration.seconds}초 전`;
+
+    return createdMessage;
+}
