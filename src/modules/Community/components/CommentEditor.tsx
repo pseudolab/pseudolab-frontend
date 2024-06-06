@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, TextField, Button } from "@mui/material";
 
 interface CommentEditorProps {
-    onEditComment: (contents: string) => void
+    onEditComment: (author: string, contents: string, password: string) => void
 };
 
 const CommentEditor = (commentEditorProps: CommentEditorProps) => {

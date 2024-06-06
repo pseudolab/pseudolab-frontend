@@ -23,12 +23,24 @@ export interface CommentProps {
   created_at: number;
 }
 
+export interface RequestEditComment {
+  board_id: number,
+  id?: number, // id가 존재하면 Edit, 없으면 추가
+  author: string,
+  contents: string,
+  password: string,
+}
+
+export interface RequestDeleteComment {
+  board_id: number,
+  id: number,
+  password: string,
+}
+
 export interface BoardViewProps extends BoardItemProps {
   contents: string;
   comment_list: CommentProps[],
 }
-
-
 
 export interface BoardListResponse {
   items: BoardItemProps[];

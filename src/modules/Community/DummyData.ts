@@ -63,3 +63,5 @@ export let getDummyBoardCommentsResponse = (board_id: number): CommentProps[] =>
     return []
   return commentList;
 }
+
+// export let requestDummyBoardEditComments = (RequestEditComment: number)
