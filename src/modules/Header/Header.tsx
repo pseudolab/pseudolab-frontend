@@ -27,7 +27,7 @@ interface Props {
 
 const drawerWidth = window.innerWidth * 0.7;
 const navItems = [
-  { name: "커뮤니티", path: "/comunity", permission: "" },
+  { name: "커뮤니티", path: "/community", permission: "" },
   { name: "빌더", path: "/builder/intro", permission: "" },
   { name: "러너", path: "/runner/intro", permission: "" },
   { name: "빙고", path: "/bingo", permission: "" },
