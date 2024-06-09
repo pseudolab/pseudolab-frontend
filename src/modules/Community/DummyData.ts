@@ -1,4 +1,4 @@
-import type { BoardItemProps, BoardListResponse, CommentProps } from "./types/BoardTypes";
+import type { BoardItemProps, BoardListResponse, CommentProps, RequestEditComment } from "./types/BoardTypes";
 
 const DUMMY_COUNT: number = 1000;
 const PAGE_COUNT: number = 50;
@@ -33,7 +33,7 @@ for (let i: number = 0; i < DUMMY_COUNT; ++i) {
   DUMMY_BOARD_COMMMENT_LIST.set(id, [])
   for (let j: number = 0; j < commentCount; ++j) {
     DUMMY_BOARD_COMMMENT_LIST.get(id)?.push({
-      id: ++commentIndex,
+      id: commentIndex++,
       author: `${i + j}`,
       contents: `댓글 ${j}`,
       created_at: Date.now(),
@@ -64,4 +64,18 @@ export let getDummyBoardCommentsResponse = (board_id: number): CommentProps[] =>
   return commentList;
 }
 
-// export let requestDummyBoardEditComments = (RequestEditComment: number)
+export let requestDummyBoardEditComments = (requestData: RequestEditComment): CommentProps | undefined => {
+  let commentList: CommentProps[] | undefined = DUMMY_BOARD_COMMMENT_LIST.get(requestData.board_id)
+  if (commentList === undefined)
+    return undefined
+
+  const commentProp = {
+    id: commentIndex++,
+    author: requestData.author,
+    contents: requestData.contents,
+    created_at: Date.now()
+  }
+
+  commentList.push(commentProp)
+  return commentProp;
+}

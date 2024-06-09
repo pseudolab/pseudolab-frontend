@@ -23,6 +23,12 @@ export interface CommentProps {
   created_at: number;
 }
 
+export interface CommentEditInfo {
+  author: string,
+  contents: string,
+  password: string,
+}
+
 export interface RequestEditComment {
   board_id: number,
   id?: number, // id가 존재하면 Edit, 없으면 추가

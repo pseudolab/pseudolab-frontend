@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button } from "@mui/material";
+import type { CommentEditInfo } from '../types/BoardTypes';
+
+
 
 interface CommentEditorProps {
-    onEditComment: (author: string, contents: string, password: string) => void
+    onEditComment: (commentInfo: CommentEditInfo) => void
 };
 
+
 const CommentEditor = (commentEditorProps: CommentEditorProps) => {
-    const [content, setContent] = useState<string>('');
+    const [commentInfo, setCommentInfo] = useState<CommentEditInfo>({ author: "test", contents: "", password: "1234" })
     const handleSubmit = () => {
-        if (content.trim()) {
-            commentEditorProps.onEditComment(content);
-            window.location.reload()
+        if (commentInfo.contents.trim()) {
+            commentEditorProps.onEditComment(commentInfo);
         }
     };
 
@@ -25,7 +28,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
                 rows={4}
                 variant="outlined"
                 placeholder="댓글을 입력하세요"
-                onChange={(e) => setContent(e.target.value)}
+                onChange={(e) => setCommentInfo({ ...commentInfo, contents: e.target.value })}
             />
             <Box mt={2}>
                 <Button variant="contained" color="primary" onClick={handleSubmit}>
