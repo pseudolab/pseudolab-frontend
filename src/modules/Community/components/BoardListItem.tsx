@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const BoardListItem = (itemProps: BoardItemProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/community/${itemProps.id}`, { state: itemProps }); // 경로 이동
+    navigate(`/community/${itemProps.board_id}`, { state: itemProps }); // 경로 이동
   };
 
   const title = itemProps.title;

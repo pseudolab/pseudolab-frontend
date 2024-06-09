@@ -44,7 +44,7 @@ function App() {
 }
 
 function Test() {
-  return <div>Test</div>;
+  return <div>준비중입니다</div>;
 }
 
 export default App;

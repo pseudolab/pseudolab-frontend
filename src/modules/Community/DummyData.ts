@@ -8,7 +8,7 @@ for (let i: number = 0; i < DUMMY_COUNT; ++i) {
   const created_at = Date.now() - (i * 8000000);
   //console.log(`${i} ${new Date(created_at)}`)
   DUMMY_BOARD_ITEMS.push({
-    id: i,
+    board_id: i,
     title: `테스트${i}`,
     author: `${i}`,
     created_at: created_at,
@@ -29,11 +29,11 @@ let commentIndex = 0;
 let DUMMY_BOARD_COMMMENT_LIST: Map<number, CommentProps[]> = new Map<number, CommentProps[]>()
 for (let i: number = 0; i < DUMMY_COUNT; ++i) {
   const commentCount: number = Math.floor(Math.random() * 5) + 2
-  const id = DUMMY_BOARD_ITEMS[i].id
+  const id = DUMMY_BOARD_ITEMS[i].board_id
   DUMMY_BOARD_COMMMENT_LIST.set(id, [])
   for (let j: number = 0; j < commentCount; ++j) {
     DUMMY_BOARD_COMMMENT_LIST.get(id)?.push({
-      id: commentIndex++,
+      comment_id: commentIndex++,
       author: `${i + j}`,
       contents: `댓글 ${j}`,
       created_at: Date.now(),
