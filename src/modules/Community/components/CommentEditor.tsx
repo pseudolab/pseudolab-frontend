@@ -9,11 +9,18 @@ interface CommentEditorProps {
 };
 
 
+const DEFAULT_COMMENT_EDIT_INFO: CommentEditInfo = {
+    author: "",
+    contents: "",
+    password: "",
+}
+
 const CommentEditor = (commentEditorProps: CommentEditorProps) => {
-    const [commentInfo, setCommentInfo] = useState<CommentEditInfo>({ author: "test", contents: "", password: "1234" })
+    const [commentInfo, setCommentInfo] = useState<CommentEditInfo>(DEFAULT_COMMENT_EDIT_INFO)
     const handleSubmit = () => {
         if (commentInfo.contents.trim()) {
             commentEditorProps.onEditComment(commentInfo);
+            setCommentInfo(DEFAULT_COMMENT_EDIT_INFO)
         }
     };
 
@@ -28,6 +35,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
                 rows={2}
                 variant="outlined"
                 placeholder="댓글을 입력하세요"
+                value={commentInfo.contents}
                 onChange={(e) => setCommentInfo({ ...commentInfo, contents: e.target.value })}
             />
             <Box mt={2}>
