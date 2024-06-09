@@ -43,10 +43,13 @@ export interface RequestDeleteComment {
   password: string,
 }
 
-export interface BoardViewProps extends BoardItemProps {
-  contents: string;
-  comment_list: CommentProps[],
+export interface RequestEditBoard {
+  board_id?: number, // id가 있으면 Edit, 없으면 추가
+  author: string,
+  contents: string,
+  password: string,
 }
+
 
 export interface BoardListResponse {
   items: BoardItemProps[];

@@ -47,6 +47,12 @@ const BoardListView = () => {
 
     return (
         <Box>
+            <Box alignItems="left">
+                <Button variant="contained" href="/community/new"  >
+                    글쓰기
+                </Button>
+            </Box>
+
             <BoardList items={boardListResponse.items}></BoardList>
             <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
                 <Button variant="contained" onClick={() => handlePageChange(page - 1)} disabled={page <= 1}>
