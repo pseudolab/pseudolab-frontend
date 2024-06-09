@@ -70,7 +70,7 @@ export let requestDummyBoardEditComments = (requestData: RequestEditComment): Co
     return undefined
 
   const commentProp = {
-    id: commentIndex++,
+    comment_id: commentIndex++,
     author: requestData.author,
     contents: requestData.contents,
     created_at: Date.now()
