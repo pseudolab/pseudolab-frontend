@@ -4,31 +4,35 @@ on:
   push:
     branches:
       - feature/cd
+    workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: dev
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Check out the repository
+        uses: actions/checkout@v2
+        with:
+          ref: feature/cd
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-    - name: Build and push Docker images
-      env:
-        VITE_DISCORD_CLIENT_ID: ${{ secrets.VITE_DISCORD_CLIENT_ID }}
-        VITE_DISCORD_CLIENT_SECRET: ${{ secrets.VITE_DISCORD_CLIENT_SECRET }}
-        VITE_DISCORD_OAUTH2_URL: ${{ secrets.VITE_DISCORD_OAUTH2_URL }}
-        VITE_API_URL: ${{ secrets.VITE_API_URL }}
-      run: |
-        docker compose -f docker-compose.yaml build
+      - name: Build and push Docker images
+        env:
+          VITE_DISCORD_CLIENT_ID: ${{ secrets.VITE_DISCORD_CLIENT_ID }}
+          VITE_DISCORD_CLIENT_SECRET: ${{ secrets.VITE_DISCORD_CLIENT_SECRET }}
+          VITE_DISCORD_OAUTH2_URL: ${{ secrets.VITE_DISCORD_OAUTH2_URL }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        run: |
+          docker compose -f docker-compose.yaml build
 
-    - name: Run Docker Compose
-      env:
-        VITE_DISCORD_CLIENT_ID: ${{ secrets.VITE_DISCORD_CLIENT_ID }}
-        VITE_DISCORD_CLIENT_SECRET: ${{ secrets.VITE_DISCORD_CLIENT_SECRET }}
-        VITE_DISCORD_OAUTH2_URL: ${{ secrets.VITE_DISCORD_OAUTH2_URL }}
-        VITE_API_URL: ${{ secrets.VITE_API_URL }}
-      run: |
-        docker compose -f docker-compose.yaml up -d
+      - name: Run Docker Compose
+        env:
+          VITE_DISCORD_CLIENT_ID: ${{ secrets.VITE_DISCORD_CLIENT_ID }}
+          VITE_DISCORD_CLIENT_SECRET: ${{ secrets.VITE_DISCORD_CLIENT_SECRET }}
+          VITE_DISCORD_OAUTH2_URL: ${{ secrets.VITE_DISCORD_OAUTH2_URL }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        run: |
+          docker compose -f docker-compose.yaml up -d
