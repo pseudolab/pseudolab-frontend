@@ -4,3 +4,7 @@ export const getNickName = (): string => {
         return ""
     return nickname;
 }
+
+export const setNickName = (nickname: string) => {
+    localStorage.setItem("nickname", nickname)
+}

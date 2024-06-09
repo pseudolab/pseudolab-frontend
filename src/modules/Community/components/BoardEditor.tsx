@@ -5,7 +5,7 @@ import {
     Button,
 } from "@mui/material";
 import type { RequestEditBoard } from "../types/BoardTypes";
-import { getNickName } from "../../../utils/LocalStorageUtils";
+import { getNickName, setNickName } from "../../../utils/LocalStorageUtils";
 
 const DEFAULT_BOARD_EDIT_INFO: RequestEditBoard = { author: getNickName(), contents: "", password: "" }
 const DEFAULT_ERROR_MESSAGE = { author: "", password: "", contents: "" }
@@ -45,7 +45,7 @@ const BoardEditor = () => {
             return
         }
 
-        localStorage.setItem("nickname", boardInfo.author);
+        setNickName(boardInfo.author);
         console.log("Form submitted:", boardInfo);
         window.location.href = "/community"
     };

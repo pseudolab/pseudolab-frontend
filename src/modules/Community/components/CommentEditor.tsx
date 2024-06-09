@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Typography, TextField, Button } from "@mui/material";
 import type { CommentEditInfo } from '../types/BoardTypes';
-import { getNickName } from '../../../utils/LocalStorageUtils';
+import { getNickName, setNickName } from '../../../utils/LocalStorageUtils';
 
 
 interface CommentEditorProps {
@@ -42,6 +42,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
             return
         }
 
+        setNickName(commentInfo.author);
         commentEditorProps.onEditComment(commentInfo);
         setCommentInfo(DEFAULT_COMMENT_EDIT_INFO);
     };
