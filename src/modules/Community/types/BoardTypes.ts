@@ -1,5 +1,5 @@
 export interface BoardItemProps {
-  id: number;
+  board_id: number;
   title: string;
   author: string;
   created_at: number;
@@ -17,7 +17,7 @@ export interface CommentListProps {
 }
 
 export interface CommentProps {
-  id: number,
+  comment_id: number,
   author: string;
   contents: string,
   created_at: number;
@@ -31,7 +31,7 @@ export interface CommentEditInfo {
 
 export interface RequestEditComment {
   board_id: number,
-  id?: number, // id가 존재하면 Edit, 없으면 추가
+  comment_id?: number, // id가 존재하면 Edit, 없으면 추가
   author: string,
   contents: string,
   password: string,
@@ -39,7 +39,7 @@ export interface RequestEditComment {
 
 export interface RequestDeleteComment {
   board_id: number,
-  id: number,
+  comment_id: number,
   password: string,
 }
 
@@ -57,7 +57,7 @@ export interface BoardListResponse {
 }
 
 export interface BoardResponse {
-  id: number,
+  board_id: number,
   contents: string,
   comment_list: CommentProps[],
 }

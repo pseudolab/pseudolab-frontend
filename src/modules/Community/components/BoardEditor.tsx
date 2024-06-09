@@ -5,40 +5,49 @@ import {
     Button,
 } from "@mui/material";
 import type { RequestEditBoard } from "../types/BoardTypes";
+import { getNickName, setNickName } from "../../../utils/LocalStorageUtils";
 
-const DEFAULT_BOARD_EDIT_INFO: RequestEditBoard = { author: "", contents: "", password: "" }
+const DEFAULT_BOARD_EDIT_INFO: RequestEditBoard = { author: getNickName(), contents: "", password: "" }
+const DEFAULT_ERROR_MESSAGE = { author: "", password: "", contents: "" }
 
 const BoardEditor = () => {
     const [boardInfo, setBoardInfo] = useState(DEFAULT_BOARD_EDIT_INFO)
-    const [errorMessages, setErrorMessages] = useState({ author: "", password: "", contents: "" })
+    const [errorMessages, setErrorMessages] = useState(DEFAULT_ERROR_MESSAGE)
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         let valid = true;
-        const newErrorMessages = { author: "", password: "", contents: "" };
+        const newErrorMessages = DEFAULT_ERROR_MESSAGE;
+        let alertMessage: string = ""
 
         if (!boardInfo.author.trim()) {
             newErrorMessages.author = "닉네임을 입력해 주세요.";
+            alertMessage += "닉네임을 입력해 주세요.\n";
             valid = false;
         }
 
         const passwordRegex = /^\d{4}$/;
         if (!boardInfo.password.trim() || !passwordRegex.test(boardInfo.password)) {
-            newErrorMessages.password = "비밀번호를 4자리로 입력해 주세요.";
+            newErrorMessages.password = "비밀번호를 숫자로만4자리로 입력해 주세요.";
+            alertMessage += "비밀번호를 숫자로만 4자리로 입력해 주세요.\n";
             valid = false;
         }
 
         if (!boardInfo.contents.trim()) {
             newErrorMessages.contents = "내용을 입력해 주세요.";
+            alertMessage += "내용을 입력해 주세요.\n";
             valid = false;
         }
 
         setErrorMessages(newErrorMessages);
 
         if (!valid) {
+            alert(alertMessage);
             return
         }
 
+        setNickName(boardInfo.author);
         console.log("Form submitted:", boardInfo);
+        window.location.href = "/community"
     };
 
 
@@ -51,7 +60,7 @@ const BoardEditor = () => {
         >
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-required-author"
                 name="author"
                 label="닉네임"
                 placeholder="닉네임을 입력해 주세요"
@@ -63,7 +72,7 @@ const BoardEditor = () => {
 
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-required-password"
                 name="password"
                 type="password"
                 label="비밀번호"
@@ -81,7 +90,7 @@ const BoardEditor = () => {
                 required
                 fullWidth
                 multiline
-                id="outlined-required"
+                id="outlined-required-contents "
                 name="contents"
                 label="내용"
                 rows={10}

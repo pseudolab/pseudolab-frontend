@@ -9,11 +9,11 @@ import CommentEditor from './components/CommentEditor';
 const BoardView = () => {
     const { state } = useLocation()
     const itemProps: BoardItemProps = state;
-    const contents = getDummyBoardContentsResponse(itemProps.id);
-    const commentList: CommentProps[] = getDummyBoardCommentsResponse(itemProps.id);
+    const contents = getDummyBoardContentsResponse(itemProps.board_id);
+    const commentList: CommentProps[] = getDummyBoardCommentsResponse(itemProps.board_id);
     const [comments, setComments] = useState(commentList || []);
     const handleEditComment = (commentData: CommentEditInfo) => {
-        const board_id = itemProps.id;
+        const board_id = itemProps.board_id;
         // board_id로 댓글 생성 후 성공하면 돌아오는 데이터로 아래 내용 채우기.
         // password는 서버로 쏘기만
         const responseComment: CommentProps | undefined = requestDummyBoardEditComments({ board_id: board_id, ...commentData })

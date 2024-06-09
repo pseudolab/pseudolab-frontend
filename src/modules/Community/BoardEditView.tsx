@@ -1,5 +1,5 @@
-import BoardEditor from "./components/BoardEditor"
 import { Box, Typography } from "@mui/material";
+import BoardEditor from "./components/BoardEditor";
 
 const BoardEditView = () => {
     return (
