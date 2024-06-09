@@ -35,7 +35,7 @@ const BoardEditor = () => {
         setErrorMessages(newErrorMessages);
 
         if (!valid) {
-            alert(`${errorMessages}`);
+            return
         }
 
         console.log("Form submitted:", boardInfo);
