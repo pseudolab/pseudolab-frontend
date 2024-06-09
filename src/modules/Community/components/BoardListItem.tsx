@@ -4,41 +4,38 @@ import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
 } from "@mui/icons-material";
-import { useState } from "react";
-import type { BoardItemProps } from "../types/Board";
+import type { BoardItemProps } from "../types/BoardTypes";
+import { getCreatedDurationMessage } from "../../../utils/DateUtils";
+import { useNavigate } from 'react-router-dom';
 
-const MONTH_IN_A_YEAR: number = 12;
 
 const BoardListItem = (itemProps: BoardItemProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/community/${itemProps.id}`, { state: itemProps }); // 경로 이동
+  };
+
   const title = itemProps.title;
   const author = itemProps.author;
-  const createdAt: number = itemProps.createdAt;
-  const diffMs = Date.now() - createdAt;
-  const diffDate = new Date(diffMs);
-
-  let createdMessage = "";
-  const diffMonth = diffDate.getMonth();
-  const diffYear = Math.floor(diffMonth / MONTH_IN_A_YEAR);
-  const diffDay = diffDate.getDay();
-  const diffHour = diffDate.getHours();
-  const diffMinute = diffDate.getMinutes();
-  if (diffYear > 0) createdMessage = `${diffYear}년 전`;
-  else if (diffMonth > 0) createdMessage = `${diffMonth}개월 전`;
-  else if (diffDay > 0) createdMessage = `${diffDay}일 전`;
-  else if (diffHour > 0) createdMessage = `${diffHour}시간 전`;
-  else if (diffMinute > 0) createdMessage = `${diffMinute}분 전`;
-  else createdMessage = `${diffDate.getSeconds()}초 전`;
-  console.log(diffDate.getMonth());
-  console.log(diffDate.getDay());
-
-  const viewCount = itemProps.viewCount;
-  const commentCount = itemProps.commentCount;
-  const likeCount = itemProps.likeCount;
+  const createdAt: number = itemProps.created_at;
+  const createdMessage = getCreatedDurationMessage(new Date(createdAt), new Date(Date.now()));
+  const viewCount = itemProps.view_count;
+  const commentCount = itemProps.comment_count;
+  const likeCount = itemProps.like_count;
 
   return (
-    <Card>
+    <Card sx={{
+      width: "auto",
+      height: "7rem",
+      cursor: "pointer",
+      transition: "transform 0.2s, box-shadow 0.2s",
+      '&:hover': {
+        transform: "scale(1.02)",
+        boxShadow: 3,
+      },
+    }} onClick={handleClick}>
       <CardContent>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {title}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
