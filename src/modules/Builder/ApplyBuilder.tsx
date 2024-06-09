@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material";
 import InputField from "../../components/common/InputField";
 import MultipleChoiceField from "../../components/common/MultipleChoiceField";
-import PrivacyPolicy from "./component/PrivacyPolicy";
+import PrivacyPolicy from "../../components/common/PrivacyPolicy";
 import BuilderRules from "./component/BuilderRules";
 import { useState } from "react";
 
@@ -77,7 +77,7 @@ const ApplyBuilder = () => {
           { value: "n", label: "아니오" },
         ]}
         onChange={(e) => {
-          handleChange("wasBuilder", (e.target.value === "y" ? true : false));
+          handleChange("wasBuilder", e.target.value === "y" ? true : false);
         }}
       />
       <InputField
@@ -102,7 +102,7 @@ const ApplyBuilder = () => {
         id="role"
         label="지원하고자 하는 역할은 무엇인가요?"
         options={[
-          { value: "academy", label: "acad아카데미 빌더emy" },
+          { value: "academy", label: "아카데미 빌더" },
           { value: "fellowship", label: "펠로우십 빌더" },
           { value: "community", label: "커뮤니티 빌더" },
           { value: "dev", label: "데브 빌더" },
@@ -214,12 +214,12 @@ const ApplyBuilder = () => {
         id="is-builder"
         label='본 신청은 스터디나 일반 참가자가 아닌 "운영진"을 신청하는 것임을 확인하셨나요?'
         options={[
-            { value: "y", label: "예" },
-            { value: "n", label: "아니오" },
-          ]}
-          onChange={(e) => {
-            handleChange("wasBuilder", (e.target.value === "y" ? true : false));
-          }}
+          { value: "y", label: "예" },
+          { value: "n", label: "아니오" },
+        ]}
+        onChange={(e) => {
+          handleChange("isBuilder", e.target.value === "y" ? true : false);
+        }}
       />
       <Box
         sx={{
@@ -243,19 +243,19 @@ const ApplyBuilder = () => {
           { value: "n", label: "아니오" },
         ]}
         onChange={(e) => {
-            handleChange("wasBuilder", (e.target.value === "y" ? true : false));
-          }}
+          handleChange("ruleAgree", e.target.value === "y" ? true : false);
+        }}
       />
       <MultipleChoiceField
         id="privacy-agree"
         label="아래 개인정보 처리방침에 동의하십니까?"
         options={[
-            { value: "y", label: "예" },
-            { value: "n", label: "아니오" },
-          ]}
-          onChange={(e) => {
-            handleChange("wasBuilder", (e.target.value === "y" ? true : false));
-          }}
+          { value: "y", label: "예" },
+          { value: "n", label: "아니오" },
+        ]}
+        onChange={(e) => {
+          handleChange("privacyAgree", e.target.value === "y" ? true : false);
+        }}
       />
 
       <Box
