@@ -1,27 +1,56 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Box, Typography, TextField, Button } from "@mui/material";
 import type { CommentEditInfo } from '../types/BoardTypes';
-
+import { getNickName } from '../../../utils/LocalStorageUtils';
 
 
 interface CommentEditorProps {
     onEditComment: (commentInfo: CommentEditInfo) => void
 };
 
-
 const DEFAULT_COMMENT_EDIT_INFO: CommentEditInfo = {
-    author: "",
+    author: getNickName(),
     contents: "",
     password: "",
 }
+const DEFAULT_ERROR_MESSAGE = { author: "", password: "", contents: "" }
 
 const CommentEditor = (commentEditorProps: CommentEditorProps) => {
     const [commentInfo, setCommentInfo] = useState<CommentEditInfo>(DEFAULT_COMMENT_EDIT_INFO)
-    const handleSubmit = () => {
-        if (commentInfo.contents.trim()) {
-            commentEditorProps.onEditComment(commentInfo);
-            setCommentInfo(DEFAULT_COMMENT_EDIT_INFO)
+    const [errorMessages, setErrorMessages] = useState(DEFAULT_ERROR_MESSAGE)
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
+        const newErrorMessages = DEFAULT_ERROR_MESSAGE;
+        let alertMessage: string = ""
+
+        let valid = true;
+        if (!commentInfo.author.trim()) {
+            newErrorMessages.author = "닉네임을 입력해 주세요.";
+            alertMessage += "닉네임을 입력해 주세요.\n";
+            valid = false;
         }
+
+        const passwordRegex = /^\d{4}$/;
+        if (!commentInfo.password.trim() || !passwordRegex.test(commentInfo.password)) {
+            newErrorMessages.password = "비밀번호를 숫자로만4자리로 입력해 주세요.";
+            alertMessage += "비밀번호를 숫자로만 4자리로 입력해 주세요.\n";
+            valid = false;
+        }
+
+        if (!commentInfo.contents.trim()) {
+            newErrorMessages.contents = "내용을 입력해 주세요.";
+            alertMessage += "내용을 입력해 주세요.\n";
+            valid = false;
+        }
+
+        setErrorMessages(newErrorMessages);
+        if (!valid) {
+            alert(alertMessage);
+            return
+        }
+
+        commentEditorProps.onEditComment(commentInfo);
+        setCommentInfo(DEFAULT_COMMENT_EDIT_INFO);
     };
 
     return (
@@ -29,7 +58,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
             <Typography variant="h6" gutterBottom>
                 댓글 작성
             </Typography>
-            <Box display="flex" justifyContent="space-between">
+            <Box display="flex" justifyContent="start">
                 <TextField
                     required
                     id="outlined-required-author"
@@ -38,7 +67,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
                     placeholder="닉네임을 입력해 주세요"
                     value={commentInfo.author}
                     onChange={(e) => setCommentInfo({ ...commentInfo, author: e.target.value })}
-
+                    error={!!errorMessages.author}
                 />
                 <TextField
                     required
@@ -52,6 +81,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
                     inputProps={{
                         maxLength: 4, // 최대 길이 4자로 설정
                     }}
+                    error={!!errorMessages.password}
                 />
             </Box>
             <TextField
@@ -62,6 +92,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
                 placeholder="댓글을 입력하세요"
                 value={commentInfo.contents}
                 onChange={(e) => setCommentInfo({ ...commentInfo, contents: e.target.value })}
+                error={!!errorMessages.contents}
             />
             <Box mt={2}>
                 <Button variant="contained" color="primary" onClick={handleSubmit}>

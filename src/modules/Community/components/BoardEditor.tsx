@@ -5,12 +5,9 @@ import {
     Button,
 } from "@mui/material";
 import type { RequestEditBoard } from "../types/BoardTypes";
+import { getNickName } from "../../../utils/LocalStorageUtils";
 
-const DEFAULT_BOARD_EDIT_INFO: RequestEditBoard = { author: "", contents: "", password: "" }
-let author: string | null = localStorage.getItem("nickname")
-author = author == null ? "" : author
-DEFAULT_BOARD_EDIT_INFO.author = author
-
+const DEFAULT_BOARD_EDIT_INFO: RequestEditBoard = { author: getNickName(), contents: "", password: "" }
 const DEFAULT_ERROR_MESSAGE = { author: "", password: "", contents: "" }
 
 const BoardEditor = () => {
