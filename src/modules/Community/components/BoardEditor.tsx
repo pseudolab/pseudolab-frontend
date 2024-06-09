@@ -7,6 +7,9 @@ import {
 import type { RequestEditBoard } from "../types/BoardTypes";
 
 const DEFAULT_BOARD_EDIT_INFO: RequestEditBoard = { author: "", contents: "", password: "" }
+let author: string | null = localStorage.getItem("nickname")
+author = author == null ? "" : author
+DEFAULT_BOARD_EDIT_INFO.author = author
 
 const BoardEditor = () => {
     const [boardInfo, setBoardInfo] = useState(DEFAULT_BOARD_EDIT_INFO)
@@ -38,6 +41,7 @@ const BoardEditor = () => {
             return
         }
 
+        localStorage.setItem("nickname", boardInfo.author);
         console.log("Form submitted:", boardInfo);
         window.location.href = "/community"
     };
@@ -52,7 +56,7 @@ const BoardEditor = () => {
         >
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-required-author"
                 name="author"
                 label="닉네임"
                 placeholder="닉네임을 입력해 주세요"
@@ -64,7 +68,7 @@ const BoardEditor = () => {
 
             <TextField
                 required
-                id="outlined-required"
+                id="outlined-required-password"
                 name="password"
                 type="password"
                 label="비밀번호"
@@ -82,7 +86,7 @@ const BoardEditor = () => {
                 required
                 fullWidth
                 multiline
-                id="outlined-required"
+                id="outlined-required-contents "
                 name="contents"
                 label="내용"
                 rows={10}
