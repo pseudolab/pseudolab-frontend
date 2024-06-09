@@ -12,6 +12,8 @@ import BoardView from "./modules/Community/BoardView.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ApplyBuilder from "./modules/Builder/ApplyBuilder.tsx";
+import IntroduceRunner from "./modules/Runner/IntroduceRunner.tsx";
+import ApplyRunner from "./modules/Runner/ApplyRunner.tsx";
 
 function App() {
   const defaultTheme = createTheme();
@@ -26,7 +28,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/builder/intro" element={<IntroduceBuilder />} />
             <Route path="/builder/apply" element={<ApplyBuilder />} />
-            <Route path="/runner" element={<Test />} />
+            <Route path="/runner/intro" element={<IntroduceRunner />} />
+            <Route path="/runner/apply" element={<ApplyRunner />} />
             <Route path="/community/*" element={<Board />} />
             <Route path="/bingo" element={<Bingo />} />
             <Route path="/signup" element={<SignUpForm />} />
