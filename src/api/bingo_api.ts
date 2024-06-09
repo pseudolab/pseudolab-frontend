@@ -1,4 +1,4 @@
-const URL = "http://34.125.163.236:8000"; // TEMPORARY
+const URL = import.meta.env.VITE_API_URL; // TEMPORARY
 
 export const singUpUser = async (username: string) => {
   const response = await fetch(
