@@ -39,6 +39,7 @@ const BoardEditor = () => {
         }
 
         console.log("Form submitted:", boardInfo);
+        window.location.href = "/community"
     };
 
 
