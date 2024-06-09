@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 
 const bannerImages = [
-  "https://pseudo-lab.com/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F333f96cf-396d-45ff-8331-232d41bd4d55%2Fa7cc37d4-d7b6-4421-80d4-73d46bb46027%2F-7---_-001_3.png?table=block&id=957b39d1-7657-484a-846c-3b261e67e004&spaceId=333f96cf-396d-45ff-8331-232d41bd4d55&width=2000&userId=&cache=v2",
-  "https://pseudo-lab.com/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F333f96cf-396d-45ff-8331-232d41bd4d55%2Fa7cc37d4-d7b6-4421-80d4-73d46bb46027%2F-7---_-001_3.png?table=block&id=957b39d1-7657-484a-846c-3b261e67e004&spaceId=333f96cf-396d-45ff-8331-232d41bd4d55&width=2000&userId=&cache=v2",
-  "https://pseudo-lab.com/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F333f96cf-396d-45ff-8331-232d41bd4d55%2Fa7cc37d4-d7b6-4421-80d4-73d46bb46027%2F-7---_-001_3.png?table=block&id=957b39d1-7657-484a-846c-3b261e67e004&spaceId=333f96cf-396d-45ff-8331-232d41bd4d55&width=2000&userId=&cache=v2",
+  "https://eventusstorage.blob.core.windows.net/evs/Image/pseudolab/85206/ProjectInfo/Cover/4a2630ed993d431e888a2f4425fce087.png",
+  "https://cdn.discordapp.com/attachments/944039671707607060/1247531114386686004/fbeba4662e4fc2be.png?ex=66664c23&is=6664faa3&hm=d26e1287e55cd845a427a1c7c4d0e77fa920535190dd8b9ea3b8bb9f38302c41&",
+  "https://eventusstorage.blob.core.windows.net/evs/Image/pseudolab/85206/ProjectInfo/1bbe024b5e63425fa0ec4f179a1dec46.png",
 ];
 
 const MainBanner = () => {
@@ -98,13 +98,13 @@ const MainBanner = () => {
                 width: "80%", // 가운데 정렬을 위해 추가
               }}
             >
-              <Typography variant="h4">Main Banner</Typography>
+              {/* <Typography variant="h4">Main Banner</Typography>
               <Typography variant="body1">
                 This is a sample description.
               </Typography>
               <Button variant="contained" color="primary" sx={{ mt: 2 }}>
                 Learn More
-              </Button>
+              </Button> */}
             </Box>
           </Box>
         </Slide>

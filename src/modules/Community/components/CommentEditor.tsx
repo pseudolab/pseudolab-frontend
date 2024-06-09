@@ -25,7 +25,7 @@ const CommentEditor = (commentEditorProps: CommentEditorProps) => {
             <TextField
                 fullWidth
                 multiline
-                rows={4}
+                rows={2}
                 variant="outlined"
                 placeholder="댓글을 입력하세요"
                 onChange={(e) => setCommentInfo({ ...commentInfo, contents: e.target.value })}
