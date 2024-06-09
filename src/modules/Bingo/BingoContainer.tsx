@@ -8,6 +8,8 @@ import {
   getUser,
   singUpUser,
   createUserBingoInteraction,
+  getUserLatestInteraction,
+  getUserName
 } from "../../api/bingo_api.ts";
 import {
   defafultBingoBoard,
@@ -35,6 +37,8 @@ const BingoContainer = () => {
     { value: string; status: number }[]
   >([]);
   const [opponentID, setOpponentID] = useState("");
+  const [recentWords, setRecentWords] = useState(localStorage.getItem("recentWords") || "");
+  const [recentSendUser, setRecentSendUser] = useState(localStorage.getItem("recentSendUser") || "");
   const MyID = useInput(localStorage.getItem("myID") || "");
   const [userSelectedWords, setUserSelectedWords] = useState<string[]>([]);
   const initBingoBoard = async () => {
@@ -50,13 +54,26 @@ const BingoContainer = () => {
       });
     });
     localStorage.setItem("myWordList", [myWord1, myWord2, myWord3].join(","));
-    await singUpUser(MyID.value);
-    const user = await getUser(MyID.value);
-    await createBingoBoard(user.user_id, boardData);
+
+    if (MyID.value != "") {
+      await singUpUser(MyID.value);
+      const user = await getUser(MyID.value);
+      await createBingoBoard(user.user_id, boardData);
+    }
   };
   const refreshBingoWords = async () => {
     const user = await getUser(MyID.value);
     const newBingoWords = await getBingoBoard(user.user_id);
+    const userLatestInteraction = await getUserLatestInteraction(user.user_id);
+
+    if (userLatestInteraction) {
+      const sendUserName = await getUserName(userLatestInteraction.send_user_id);
+      const wordList = userLatestInteraction.word_id_list
+      localStorage.setItem("recentWords", wordList);
+      localStorage.setItem("recentSendUser", sendUserName);
+      setRecentWords(wordList);
+      setRecentSendUser(sendUserName);
+    }
     setBingoWords(newBingoWords);
   };
   const sendMyWords = async () => {
@@ -100,6 +117,8 @@ const BingoContainer = () => {
       myWord1={myWord1}
       myWord2={myWord2}
       myWord3={myWord3}
+      recentWords={recentWords}
+      recentSendUser={recentSendUser}
       handleWordChange={handleWordChange}
       handleMyIDChange={handleMyIDChange}
       onRefreshBingoWords={refreshBingoWords}
