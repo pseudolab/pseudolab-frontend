@@ -1,5 +1,5 @@
 import MainBanner from "./components/MainBanner";
-import { Container, Typography, Theme } from "@mui/material";
+import { Container, Typography, Theme, Box } from "@mui/material";
 import PseudoLabLogo from "../../components/common/PseudoLabLogo";
 import { styled } from "@mui/system";
 
@@ -30,6 +30,22 @@ const Home = () => {
   return (
     <StyledContainer>
       <MainBanner />
+      <Typography sx={{ whiteSpace: "pre-wrap", fontSize: "8vw", textAlign: "left", fontFamily: "Spoqa Han Sans Neo", fontWeight: "bold" }}>
+        8th PseudoCon
+      </Typography>
+
+      <Typography sx={{ whiteSpace: "pre-wrap", fontSize: "3vw", textAlign: "left", fontFamily: "Spoqa Han Sans Neo", fontWeight: "bold" }}>
+        2024.6.15
+      </Typography>
+
+      <Typography sx={{ whiteSpace: "pre-wrap", fontSize: "5vw", textAlign: "left", fontFamily: "Spoqa Han Sans Neo", fontWeight: "bold" }}>
+        가짜연구소의 8번째 컨퍼런스
+      </Typography>
+
+      <Typography sx={{ whiteSpace: "pre-wrap", fontSize: "4vw", textAlign: "left", fontFamily: "Spoqa Han Sans Neo", fontWeight: "bold" }}>
+        "AI 파도속에서 나만의 북극성 찾기"
+      </Typography>
+
       <PseudoLabLogo maxWidth="20rem" height="auto" marginRight="auto" />
       <Title>가짜연구소 (Pseudo Lab)</Title>
       <Description>
@@ -48,7 +64,7 @@ const Home = () => {
         </span>
         을 통해 개인과 커뮤니티의 성장의 사이클을 함께 만들어나가요!
       </Description>
-    </StyledContainer>
+    </StyledContainer >
   );
 };
 
