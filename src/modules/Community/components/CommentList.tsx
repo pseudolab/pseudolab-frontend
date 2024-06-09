@@ -8,7 +8,7 @@ const CommentList = (itemsProp: CommentListProps) => {
         <Box my={4}>
             <List>
                 {itemsProp.items.map((item: CommentProps) => (
-                    <Box>
+                    <Box key={item.comment_id}>
                         <CommentListItem {...item} />
                         <Divider component="li" />
                     </Box>

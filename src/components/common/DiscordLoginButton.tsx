@@ -18,7 +18,7 @@ const DiscordLoginButton = () => {
         client_secret: secret,
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "http://localhost:3000/oauth/redirect",
+        redirect_uri: "http://localhost:8000/oauth/redirect",
         scope: "identify, email",
       };
 

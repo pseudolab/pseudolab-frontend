@@ -31,6 +31,7 @@ export interface CommentEditInfo {
 
 export interface RequestEditComment {
   board_id: number,
+  title: string,
   comment_id?: number, // id가 존재하면 Edit, 없으면 추가
   author: string,
   contents: string,
