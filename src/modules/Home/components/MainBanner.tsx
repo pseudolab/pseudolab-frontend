@@ -3,21 +3,19 @@ import {
   Paper,
   Slide,
   Box,
-  Typography,
-  Button,
   CircularProgress,
 } from "@mui/material";
 
 const bannerImages = [
   "https://eventusstorage.blob.core.windows.net/evs/Image/pseudolab/85206/ProjectInfo/Cover/4a2630ed993d431e888a2f4425fce087.png",
-  "https://cdn.discordapp.com/attachments/944039671707607060/1247531114386686004/fbeba4662e4fc2be.png?ex=66664c23&is=6664faa3&hm=d26e1287e55cd845a427a1c7c4d0e77fa920535190dd8b9ea3b8bb9f38302c41&",
+  "https://eventusstorage.blob.core.windows.net/evs/Image/pseudolab/85206/ProjectInfo/9bb4a470523d48d999805f4bbd277acf.png",
   "https://eventusstorage.blob.core.windows.net/evs/Image/pseudolab/85206/ProjectInfo/1bbe024b5e63425fa0ec4f179a1dec46.png",
 ];
 
 const MainBanner = () => {
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [imageHeight, setImageHeight] = useState(300);
+  const [imageHeight, setImageHeight] = useState(500);
 
   useEffect(() => {
     const intervalId = setInterval(() => {

@@ -6,7 +6,7 @@ const Wrapper = styled("div")<SquareTextProps>(
     border: "1px solid black",
     borderRadius: "3px",
     margin: "2px",
-    fontSize: "12px",
+    fontSize: "10px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

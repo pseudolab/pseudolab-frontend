@@ -7,34 +7,21 @@ import { styled } from "@mui/system";
 import LongTextBox from "./components/LongTextBox.tsx";
 import SqaureTextBox from "./components/SqaureTextBox.tsx";
 import SelectBox from "./components/SelectBox.tsx";
+import { defafultBingoBoard } from "./components/DefaultBingoBoard.ts";
 
-const options = [
-  "기술 블로그 운영자",
-  "Linkedin 사용자",
-  "데이터 분석가/과학자",
-  "PM/PO",
-  "8기 스터디 참여자",
-  "인과추론 번역서 독자",
-  "A/B 테스트 경험자",
-  "제품 개선 경험자",
-  "인과추론팀 깃헙 팔로워",
-  "대시보드 만들어본 사람",
-  "통계/경제 전공자",
-  "오픈소스 기여자",
-  "SQL 사용자",
-  "데이터 컨퍼런스 참가경험",
-  "인과추론 연구자",
-  "CHATGPT 사용자",
-  "OP.GG 써본 사람",
-  "배그 해본 사람",
-  "게임이 취미인 사람",
-  "MBTI E인 사람",
-  "반려동물 키우는 사람",
-  "아이폰 쓰는 사람",
-  "넷플릭스 구독자",
-  "오늘 저녁 약속있는 사람",
-  "KPOP 좋아하는 사람",
-];
+
+const careerOptionsArray = defafultBingoBoard.slice(0, 4)
+const careerOptions = careerOptionsArray.map(data => data.value)
+
+const positionOptionArray = defafultBingoBoard.slice(4, 10)
+const positionOption = positionOptionArray.map(data => data.value)
+ 
+const pseudolabOptionArray = defafultBingoBoard.slice(10, 14)
+const pseudolabOption = pseudolabOptionArray.map(data => data.value)
+
+const talkOptionArray = defafultBingoBoard.slice(14, 20)
+const talkOption = talkOptionArray.map(data => data.value)
+
 
 const Wrapper = styled(Container)({
   marginTop: "4rem",
@@ -80,6 +67,7 @@ type WordChangeHandlers = {
   setMyWord1: Dispatch<SetStateAction<string>>;
   setMyWord2: Dispatch<SetStateAction<string>>;
   setMyWord3: Dispatch<SetStateAction<string>>;
+  setMyWord4: Dispatch<SetStateAction<string>>;
 };
 
 type BingoPresenterProps = {
@@ -90,6 +78,7 @@ type BingoPresenterProps = {
   myWord1: string;
   myWord2: string;
   myWord3: string;
+  myWord4: string;
   handleWordChange: WordChangeHandlers;
   recentWords: string;
   recentSendUser: string;
@@ -111,29 +100,41 @@ const BingoPresenter = (props: BingoPresenterProps) => {
             onChange={props.handleMyIDChange}
           ></InputBox>
           <SelectBox
-            label="첫 번째 단어"
+            label="첫 번째 단어 (경력)"
             value={props.myWord1}
             onChange={(event) =>
               props.handleWordChange.setMyWord1(event.target.value)
             }
-            options={options}
+            options={careerOptions}
           />
+          <br />
           <SelectBox
-            label="두 번째 단어"
+            label="두 번째 단어 (포지션)"
             value={props.myWord2}
             onChange={(event) =>
               props.handleWordChange.setMyWord2(event.target.value)
             }
-            options={options}
+            options={positionOption}
           />
+          <br />
           <SelectBox
-            label="세 번째 단어"
+            label="세 번째 단어 (가짜연구소)"
             value={props.myWord3}
             onChange={(event) =>
               props.handleWordChange.setMyWord3(event.target.value)
             }
-            options={options}
+            options={pseudolabOption}
           />
+          <br />
+          <SelectBox
+            label="네 번째 단어 (이야기하고 싶은 주제)"
+            value={props.myWord4}
+            onChange={(event) =>
+              props.handleWordChange.setMyWord4(event.target.value)
+            }
+            options={talkOption}
+          />
+          <br />
           <Button
             onClick={async () => {
               if (props.myID === "") {
@@ -143,6 +144,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
               if (
                 props.myWord1 === "" &&
                 props.myWord2 === "" &&
+                props.myWord3 === "" &&
                 props.myWord3 === ""
               ) {
                 toast.error("단어를 선택해주세요.");
