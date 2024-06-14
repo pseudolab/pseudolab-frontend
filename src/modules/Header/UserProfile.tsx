@@ -54,7 +54,7 @@ const UserProfile = (profileProps: ProfileProps) => {
 
   return (
     <Box>
-      {isLoggedIn ? (
+      {/* {isLoggedIn ? (
         <IconButton size="medium" onClick={handleClickProfile}>
           <Avatar src="" />
         </IconButton>
@@ -63,7 +63,7 @@ const UserProfile = (profileProps: ProfileProps) => {
           <Login />
         </IconButton>
       )}
-      {loginModal}
+      {loginModal} */}
     </Box>
   );
 };

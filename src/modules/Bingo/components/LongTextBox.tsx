@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 
 const Wrapper = styled("div")({
     border: "1px solid black",
-    borderRadius: "3px",
+    borderRadius: "4px",
     marginTop: "0.5rem"
 });
 

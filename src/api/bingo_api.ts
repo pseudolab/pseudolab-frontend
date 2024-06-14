@@ -1,8 +1,8 @@
-const URL = import.meta.env.VITE_API_URL; // TEMPORARY
+const API_URL: string = import.meta.env.VITE_API_URL;
 
 export const singUpUser = async (username: string) => {
   const response = await fetch(
-    `${URL}/api/auth/bingo/sign-up?username=${username}`,
+    `${API_URL}/api/auth/bingo/sign-up?username=${username}`,
     {
       method: "POST",
       headers: {
@@ -10,12 +10,13 @@ export const singUpUser = async (username: string) => {
       },
     }
   );
-  return response.ok;
+  const data = await response.json()
+  return data.ok;
 };
 
 export const getUser = async (username: string) => {
   const response = await fetch(
-    `${URL}/api/auth/bingo/get-user?username=${username}`
+    `${API_URL}/api/auth/bingo/get-user?username=${username}`
   );
   if (response.ok === false) {
     return null;
@@ -30,7 +31,7 @@ export const createBingoBoard = async (
     [key: string]: { value: string; status: number; selected: number };
   }
 ) => {
-  const response = await fetch(`${URL}/api/bingo/boards`, {
+  const response = await fetch(`${API_URL}/api/bingo/boards`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +42,7 @@ export const createBingoBoard = async (
 };
 
 export const getBingoBoard = async (userId: string) => {
-  const response = await fetch(`${URL}/api/bingo/boards/${userId}`);
+  const response = await fetch(`${API_URL}/api/bingo/boards/${userId}`);
   if (response.ok === false) {
     return [];
   }
@@ -56,7 +57,7 @@ export const getBingoBoard = async (userId: string) => {
 
 export const getSelectedWords = async (userId: string) => {
   const response = await fetch(
-    `${URL}/api/bingo/boards/selected_words/${userId}`
+    `${API_URL}/api/bingo/boards/selected_words/${userId}`
   );
   if (response.ok === false) {
     return [];
@@ -71,7 +72,7 @@ export const updateBingoBoard = async (
   receive_user_id: string
 ) => {
   const response = await fetch(
-    `${URL}/api/bingo/boards/bingo_status/${send_user_id}/${receive_user_id}`,
+    `${API_URL}/api/bingo/boards/bingo_status/${send_user_id}/${receive_user_id}`,
     {
       method: "PUT",
       headers: {
@@ -87,7 +88,7 @@ export const createUserBingoInteraction = async (
   send_user_id: number,
   receive_user_id: number
 ) => {
-  const response = await fetch(`${URL}/api/bingo/interactions`, {
+  const response = await fetch(`${API_URL}/api/bingo/interactions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -98,7 +99,7 @@ export const createUserBingoInteraction = async (
 };
 
 export const getUserLatestInteraction = async (userId: string) => {
-  const response = await fetch(`${URL}/api/bingo/interactions/${userId}`);
+  const response = await fetch(`${API_URL}/api/bingo/interactions/${userId}`);
 
   if (response.ok === false) {
     return "";
@@ -108,7 +109,7 @@ export const getUserLatestInteraction = async (userId: string) => {
 };
 
 export const getUserName = async (userId: string) => {
-  const response = await fetch(`${URL}/api/auth/bingo/get-user/${userId}`);
+  const response = await fetch(`${API_URL}/api/auth/bingo/get-user/${userId}`);
   if (response.ok === false) {
     return [];
   }
