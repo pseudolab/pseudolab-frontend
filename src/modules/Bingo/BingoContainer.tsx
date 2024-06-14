@@ -69,8 +69,6 @@ const BingoContainer = () => {
 
     if (MyID.value != "") {
       const result = await singUpUser(MyID.value);
-      console.log(`signup ${result}`);
-      alert("test")
       if (result === false && !confirm("이미 누군가 사용중인 계정입니다. 정말 로그인하시겠습니까?") && !confirm("정말 로그인하시겠습니까???"))
       {
         localStorage.setItem("myWordList", "");
