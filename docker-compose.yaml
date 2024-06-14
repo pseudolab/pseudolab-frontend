@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  node-app:
+    build: .
+    ports:
+      - "80:5173"
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+      VITE_DISCORD_CLIENT_ID: ${VITE_DISCORD_CLIENT_ID}
+      VITE_DISCORD_CLIENT_SECRET: ${VITE_DISCORD_CLIENT_SECRET}
+      VITE_DISCORD_OAUTH2_URL: ${VITE_DISCORD_OAUTH2_URL}
