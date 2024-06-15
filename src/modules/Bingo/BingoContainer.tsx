@@ -65,7 +65,7 @@ const BingoContainer = () => {
         selected: [myWord1, myWord2, myWord3, myWord4].includes(item.value) ? 1 : 0,
       });
     });
-    localStorage.setItem("myWordList", [myWord1, myWord2, myWord3, myWord4].join(","));
+    localStorage.setItem("myWordList", [myWord1, myWord2, myWord3, myWord4].join("|"));
 
     if (MyID.value != "") {
       const result = await singUpUser(MyID.value);
