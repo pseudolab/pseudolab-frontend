@@ -48,7 +48,7 @@ export const defafultBingoBoard = [
   {
     selected: 0,
     status: 0,
-    value: "클라우드, 시스템",
+    value: "클라우드, 시스템, 보안",
   },
   {
     selected: 0,

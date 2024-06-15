@@ -15,7 +15,7 @@ const careerOptions = careerOptionsArray.map(data => data.value)
 
 const positionOptionArray = defafultBingoBoard.slice(4, 10)
 const positionOption = positionOptionArray.map(data => data.value)
- 
+
 const pseudolabOptionArray = defafultBingoBoard.slice(10, 14)
 const pseudolabOption = pseudolabOptionArray.map(data => data.value)
 
@@ -24,7 +24,7 @@ const talkOption = talkOptionArray.map(data => data.value)
 
 
 const Wrapper = styled(Container)({
-  marginTop: "4rem",
+  width: "60vw",
   height: "100%",
 });
 
@@ -167,7 +167,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
             draggable // 드래그 가능
             pauseOnHover // 마우스를 올리면 알람 정지
             theme="light"
-            // limit={1} // 알람 개수 제한
+          // limit={1} // 알람 개수 제한
           />
         </Wrapper>
       ) : (
@@ -224,7 +224,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
               draggable // 드래그 가능
               pauseOnHover // 마우스를 올리면 알람 정지
               theme="light"
-              // limit={1} // 알람 개수 제한
+            // limit={1} // 알람 개수 제한
             />
             <Button onClick={props.onRefreshBingoWords}>내 빙고판 갱신</Button>
           </FormControl>
