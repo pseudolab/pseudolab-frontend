@@ -145,7 +145,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
                 props.myWord1 === "" &&
                 props.myWord2 === "" &&
                 props.myWord3 === "" &&
-                props.myWord3 === ""
+                props.myWord4 === ""
               ) {
                 toast.error("단어를 선택해주세요.");
                 return;
