@@ -194,7 +194,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
                 key={value}
                 value={value}
                 status={status}
-                recent_list={props.recentWords.split(",")}
+                recent_list={props.recentWords.split("|")}
               />
             ))}
           </BingoContainer>
