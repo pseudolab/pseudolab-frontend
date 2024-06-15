@@ -109,7 +109,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
           />
           <br />
           <SelectBox
-            label="두 번째 단어 (포지션)"
+            label="두 번째 단어 (포지션/희망직군)"
             value={props.myWord2}
             onChange={(event) =>
               props.handleWordChange.setMyWord2(event.target.value)
