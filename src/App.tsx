@@ -9,6 +9,7 @@ import Footer from "./modules/Footer/Footer.tsx";
 import SignUpForm from "./modules/Header/SignUpForm.tsx";
 import Board from "./modules/Community/index.tsx";
 import BoardView from "./modules/Community/BoardView.tsx";
+import Faust from "./modules/Faust/index.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/community/*" element={<Board />} />
             <Route path="/bingo" element={<Bingo />} />
             <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/faust" element={<Faust />} />
             {/* <Route path="/posts" component={Posts} />
             <Route path="/posts/:id" component={Post} />
             <Route path="/posts/new" component={NewPost} />
