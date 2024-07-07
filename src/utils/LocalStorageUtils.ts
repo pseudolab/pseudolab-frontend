@@ -1,10 +1,17 @@
 export const getNickName = (): string => {
-    let nickname: string | null = localStorage.getItem("nickname")
-    if (nickname === null)
-        return ""
+    let nickname: string | null = localStorage.getItem('nickname');
+    if (nickname === null) return '';
     return nickname;
-}
+};
 
 export const setNickName = (nickname: string) => {
-    localStorage.setItem("nickname", nickname)
-}
+    localStorage.setItem('nickname', nickname);
+};
+
+export const getJwtToken = (): string | null => {
+    return localStorage.getItem('userJwtToken');
+};
+
+export const setJwtToken = (jwtToken: string) => {
+    localStorage.setItem('userJwtToken', jwtToken);
+};
