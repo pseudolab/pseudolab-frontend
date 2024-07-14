@@ -1,7 +1,12 @@
 import { Box, IconButton, Modal } from '@mui/material';
 import { Login } from '@mui/icons-material';
 import { useState } from 'react';
-import DiscordLoginButton from '../../../components/common/DiscordLoginButton';
+import {
+    DiscordLoginButton,
+    GoogleLoginButton,
+    GithubLoginButton,
+} from 'react-social-login-buttons';
+//import DiscordLoginButton from '../../../components/common/DiscordLoginButton';
 
 const modalStyle = {
     position: 'absolute' as 'absolute',
@@ -30,6 +35,8 @@ const LoginButton = () => {
         >
             <Box sx={modalStyle}>
                 <DiscordLoginButton />
+                <GoogleLoginButton />
+                <GithubLoginButton />
             </Box>
         </Modal>
     );
