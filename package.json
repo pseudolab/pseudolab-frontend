@@ -23,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.21.1",
+    "react-social-login-buttons": "^4.1.0",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {
