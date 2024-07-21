@@ -11,35 +11,40 @@ import Board from "./modules/Community/index.tsx";
 import BoardView from "./modules/Community/BoardView.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
   const defaultTheme = createTheme();
 
+  const queryClient = new QueryClient();
+
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
-        <CssBaseline />
-        <Container className="App">
-          <Header />
-          <Routes>
-            <Route path="/" Component={Home} />
-            <Route path="/builder" element={<IntroduceBuilder />} />
-            <Route path="/runner" element={<Test />} />
-            <Route path="/community/*" element={<Board />} />
-            <Route path="/bingo" element={<Bingo />} />
-            <Route path="/signup" element={<SignUpForm />} />
-            {/* <Route path="/posts" component={Posts} />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={defaultTheme}>
+        <BrowserRouter>
+          <CssBaseline />
+          <Container className="App">
+            <Header />
+            <Routes>
+              <Route path="/" Component={Home} />
+              <Route path="/builder" element={<IntroduceBuilder />} />
+              <Route path="/runner" element={<Test />} />
+              <Route path="/community/*" element={<Board />} />
+              <Route path="/bingo" element={<Bingo />} />
+              <Route path="/signup" element={<SignUpForm />} />
+              {/* <Route path="/posts" component={Posts} />
             <Route path="/posts/:id" component={Post} />
             <Route path="/posts/new" component={NewPost} />
             <Route path="/posts/edit/:id" component={EditPost} />
             <Route path="/posts/delete/:id" component={DeletePost} />
             <Route path="/posts/search/:query" component={Search} />
             <Route path="/posts/search/:query/:page" component={Search} /> */}
-          </Routes>
-          <Footer />
-        </Container>
-      </BrowserRouter>
-    </ThemeProvider>
+            </Routes>
+            <Footer />
+          </Container>
+        </BrowserRouter>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
