@@ -48,6 +48,7 @@ const FaustContainer = () => {
   const handleRegisterSentence = () => {
     try {
       const sentences: { [key: string]: string } = {
+        // ToDo: API 호출로 변경
         "42": "삶과 우주, 그리고 모든 것에 대한 답은 42 입니다.",
       };
 
@@ -56,14 +57,12 @@ const FaustContainer = () => {
       }
 
       if (!sentences.hasOwnProperty(sentenceId.value)) {
-        throw new Error(
-          `No sentence found for sentenceId.value: ${sentenceId.value}`
-        );
+        throw new Error("해당 아이디의 문장이 존재하지 않습니다.");
       }
 
       alert(sentences[sentenceId.value]);
-    } catch (error) {
-      return `Error: ${(error as any).message}`;
+    } catch (error: Error | any) {
+      alert(error.message);
     }
   };
 
