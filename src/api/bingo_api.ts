@@ -25,12 +25,13 @@ export const getUser = async (username: string) => {
   return data;
 };
 
-export const createBingoBoard = async (
+export const createBingoBoard = async (args: {
   userId: string,
   boardData: {
     [key: string]: { value: string; status: number; selected: number };
   }
-) => {
+}) => {
+  const { userId, boardData } = args;
   const response = await fetch(`${API_URL}/api/bingo/boards`, {
     method: "POST",
     headers: {
@@ -83,11 +84,12 @@ export const updateBingoBoard = async (
   return response.ok;
 };
 
-export const createUserBingoInteraction = async (
-  word_id_list: string | null,
-  send_user_id: number,
-  receive_user_id: number
-) => {
+export const createUserBingoInteraction = async (args: {
+  word_id_list: string | null;
+  send_user_id: number;
+  receive_user_id: number;
+}) => {
+  const { word_id_list, send_user_id, receive_user_id } = args;
   const response = await fetch(`${API_URL}/api/bingo/interactions`, {
     method: "POST",
     headers: {
