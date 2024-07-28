@@ -1,4 +1,5 @@
-const API_URL: string = import.meta.env.VITE_API_URL;
+// const API_URL: string = import.meta.env.VITE_API_URL;
+const API_URL: string = 'http://localhost:8000';
 
 export const singUpUser = async (username: string) => {
   const response = await fetch(
@@ -43,6 +44,10 @@ export const createBingoBoard = async (args: {
 };
 
 export const getBingoBoard = async (userId: string) => {
+  if (!userId) {
+    return;
+  }
+
   const response = await fetch(`${API_URL}/api/bingo/boards/${userId}`);
   if (response.ok === false) {
     return [];
@@ -53,6 +58,7 @@ export const getBingoBoard = async (userId: string) => {
     ...boardData[key],
     id: key,
   }));
+  console.log(items);
   return items;
 };
 
@@ -101,6 +107,11 @@ export const createUserBingoInteraction = async (args: {
 };
 
 export const getUserLatestInteraction = async (userId: string) => {
+
+  if (!userId) {
+    return;
+  }
+
   const response = await fetch(`${API_URL}/api/bingo/interactions/${userId}`);
 
   if (response.ok === false) {
@@ -111,6 +122,10 @@ export const getUserLatestInteraction = async (userId: string) => {
 };
 
 export const getUserName = async (userId: string) => {
+  if (!userId) {
+    return;
+  }
+
   const response = await fetch(`${API_URL}/api/auth/bingo/get-user/${userId}`);
   if (response.ok === false) {
     return [];
