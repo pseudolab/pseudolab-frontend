@@ -1,4 +1,5 @@
-const API_URL: string = import.meta.env.VITE_API_URL;
+// const API_URL: string = import.meta.env.VITE_API_URL;
+const API_URL: string = 'http://localhost:8000';
 
 export const singUpUser = async (username: string) => {
   const response = await fetch(
@@ -25,12 +26,13 @@ export const getUser = async (username: string) => {
   return data;
 };
 
-export const createBingoBoard = async (
+export const createBingoBoard = async (args: {
   userId: string,
   boardData: {
     [key: string]: { value: string; status: number; selected: number };
   }
-) => {
+}) => {
+  const { userId, boardData } = args;
   const response = await fetch(`${API_URL}/api/bingo/boards`, {
     method: "POST",
     headers: {
@@ -42,6 +44,10 @@ export const createBingoBoard = async (
 };
 
 export const getBingoBoard = async (userId: string) => {
+  if (!userId) {
+    return;
+  }
+
   const response = await fetch(`${API_URL}/api/bingo/boards/${userId}`);
   if (response.ok === false) {
     return [];
@@ -52,6 +58,7 @@ export const getBingoBoard = async (userId: string) => {
     ...boardData[key],
     id: key,
   }));
+  console.log(items);
   return items;
 };
 
@@ -83,11 +90,12 @@ export const updateBingoBoard = async (
   return response.ok;
 };
 
-export const createUserBingoInteraction = async (
-  word_id_list: string | null,
-  send_user_id: number,
-  receive_user_id: number
-) => {
+export const createUserBingoInteraction = async (args: {
+  word_id_list: string | null;
+  send_user_id: number;
+  receive_user_id: number;
+}) => {
+  const { word_id_list, send_user_id, receive_user_id } = args;
   const response = await fetch(`${API_URL}/api/bingo/interactions`, {
     method: "POST",
     headers: {
@@ -99,6 +107,11 @@ export const createUserBingoInteraction = async (
 };
 
 export const getUserLatestInteraction = async (userId: string) => {
+
+  if (!userId) {
+    return;
+  }
+
   const response = await fetch(`${API_URL}/api/bingo/interactions/${userId}`);
 
   if (response.ok === false) {
@@ -109,6 +122,10 @@ export const getUserLatestInteraction = async (userId: string) => {
 };
 
 export const getUserName = async (userId: string) => {
+  if (!userId) {
+    return;
+  }
+
   const response = await fetch(`${API_URL}/api/auth/bingo/get-user/${userId}`);
   if (response.ok === false) {
     return [];
