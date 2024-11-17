@@ -21,7 +21,7 @@ function App() {
         <CssBaseline />
         <Container className="App">
           <Header />
-          <Routes>
+          <Routes> 
             <Route path="/" Component={Home} />
             <Route path="/builder" element={<IntroduceBuilder />} />
             <Route path="/runner" element={<Test />} />

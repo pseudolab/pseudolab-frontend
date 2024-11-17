@@ -11,7 +11,6 @@ import {
   Button,
   Drawer,
   IconButton,
-  Typography,
 } from "@mui/material";
 import { Menu, Close } from "@mui/icons-material";
 import PseudoLabLogo from "../../components/common/PseudoLabLogo";
