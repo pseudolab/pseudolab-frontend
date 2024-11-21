@@ -1,24 +1,11 @@
-import MainBanner from "./components/MainBanner";
 import { Container, Typography, Theme, Input, Button } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
-import PseudoLabLogo from "../../components/common/PseudoLabLogo";
 import { styled } from "@mui/system";
+import { useState } from "react";
 
 const StyledContainer = styled(Container)({
   textAlign: "center",
   padding: (theme: Theme) => theme.spacing(4),
-});
-
-const Title = styled(Typography)({
-  fontSize: "2.5rem",
-  fontWeight: "bold",
-  marginBottom: (theme: Theme) => theme.spacing(2),
-  color: (theme: Theme) => theme.palette.primary.main,
-});
-
-const Description = styled(Typography)({
-  fontSize: "1.2rem",
-  marginBottom: (theme: Theme) => theme.spacing(4),
 });
 
 const InputBox = styled(Input)({
@@ -26,8 +13,8 @@ const InputBox = styled(Input)({
 });
 
 const Home = () => {
-  let loginId = "";
-  let password = "";
+  const [loginId, setLoginId] = useState("");
+  const [password, setPassword] = useState("");
   const handLogin = () => {
     console.log(loginId);
     console.log(password);
@@ -89,15 +76,18 @@ const Home = () => {
         placeholder="아이디 입력"
         value={loginId}
         onChange={async (event: React.ChangeEvent<HTMLInputElement>) => {
-          loginId = event.target.value;
+          setLoginId(event.target.value);
         }}
       ></InputBox>
+
+      <br />
 
       <InputBox
         placeholder="비밀번호 입력"
         value={password}
+        type="Password"
         onChange={async (event: React.ChangeEvent<HTMLInputElement>) => {
-          password = event.target.value;
+          setPassword(event.target.value);
         }}
       ></InputBox>
       <br />
