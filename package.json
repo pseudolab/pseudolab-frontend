@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
     "@types/react-router-dom": "^5.3.3",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.11",
     "prettier": "^3.3.0",
     "process": "^0.11.10",

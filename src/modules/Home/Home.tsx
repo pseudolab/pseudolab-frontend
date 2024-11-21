@@ -2,6 +2,8 @@ import { Container, Typography, Theme, Input, Button } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify";
 import { styled } from "@mui/system";
 import { useState } from "react";
+import { SHA256 } from "crypto-js";
+import { singUpUser } from "../../api/bingo_api";
 
 const StyledContainer = styled(Container)({
   textAlign: "center",
@@ -15,9 +17,19 @@ const InputBox = styled(Input)({
 const Home = () => {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
-  const handLogin = () => {
+  const handLogin = async () => {
     console.log(loginId);
-    console.log(password);
+    const hash_password = SHA256(password).toString();
+
+    const result = singUpUser(loginId, hash_password);
+    if (result.ok === false) {
+      toast.error(result.message);
+      localStorage.setItem("myWordList", "");
+      localStorage.setItem("recentWords", "");
+      localStorage.setItem("recentSendUser", "");
+      localStorage.setItem("myID", "");
+    }
+    localStorage.setItem("myID", loginId);
   };
 
   return (
