@@ -12,6 +12,11 @@ const BingoQR = () => {
       if (myId === null) window.location.href = "";
 
       const user = await getUser(myId);
+      if (user === null) {
+        localStorage.setItem("myID", "");
+        window.location.href = "";
+      }
+
       const result = await updateBingoBoard(id, user.user_id);
       if (result === true) window.location.href = "/bingo";
     };
