@@ -42,8 +42,18 @@ const Home = () => {
 
     const bingoData = await getBingoBoard(loginId);
     if (bingoData.length == 0) {
+      const boardData: {
+        [key: string]: { value: string; status: number; selected: number };
+      } = {};
       let bingoBoard = shuffleArray(defafultBingoBoard);
-      await createBingoBoard(result.user_id, bingoBoard);
+      bingoBoard.forEach((item, index) => {
+        return (boardData[index] = {
+          value: item.value,
+          status: 0,
+          selected: 0,
+        });
+      });
+      await createBingoBoard(result.user_id, boardData);
     }
 
     window.location.href = "/bingo";
