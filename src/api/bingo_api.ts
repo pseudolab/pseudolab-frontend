@@ -47,6 +47,10 @@ export const getBingoBoard = async (userId: string) => {
     return [];
   }
   const data = await response.json();
+  if (data.ok === false) {
+    return [];
+  }
+
   const boardData = data["board_data"];
   const items = Object.keys(boardData).map((key) => ({
     ...boardData[key],
