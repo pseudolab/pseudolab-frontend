@@ -84,7 +84,7 @@ export const updateBingoBoard = async (
 };
 
 export const createUserBingoInteraction = async (
-  word_id_list: string | null,
+  word_id_list: string,
   send_user_id: number,
   receive_user_id: number
 ) => {
