@@ -32,6 +32,7 @@ const Home = () => {
       localStorage.setItem("recentWords", "");
       localStorage.setItem("recentSendUser", "");
       localStorage.setItem("myID", "");
+      return;
     }
     localStorage.setItem("myID", loginId);
 
