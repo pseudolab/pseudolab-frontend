@@ -116,9 +116,8 @@ const BingoContainer = () => {
     const user = await getUser(MyID.value);
     const opponent = await getUser(opponentID);
     updateBingoBoard(user.user_id, opponent.user_id);
-    const myWords = localStorage.getItem("myWordList");
     const res = await createUserBingoInteraction(
-      myWords,
+      "",
       user.user_id,
       opponent.user_id
     );
