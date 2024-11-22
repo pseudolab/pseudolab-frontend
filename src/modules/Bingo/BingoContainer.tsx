@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import BingoPresenter from "./BingoPresenter";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import {
   getBingoBoard,
   getSelectedWords,
@@ -10,7 +10,7 @@ import {
   singUpUser,
   createUserBingoInteraction,
   getUserLatestInteraction,
-  getUserName
+  getUserName,
 } from "../../api/bingo_api.ts";
 import {
   defafultBingoBoard,
@@ -25,10 +25,9 @@ const useInput = (initialValue: string) => {
   return { value, onChange };
 };
 
-const BingoContainer = () => {  
+const BingoContainer = () => {
   const location = useLocation();
-  if (location.search === "?logout")
-  {
+  if (location.search === "?logout") {
     localStorage.setItem("myWordList", "");
     localStorage.setItem("recentWords", "");
     localStorage.setItem("recentSendUser", "");
@@ -49,8 +48,12 @@ const BingoContainer = () => {
     { value: string; status: number }[]
   >([]);
   const [opponentID, setOpponentID] = useState("");
-  const [recentWords, setRecentWords] = useState(localStorage.getItem("recentWords") || "");
-  const [recentSendUser, setRecentSendUser] = useState(localStorage.getItem("recentSendUser") || "");
+  const [recentWords, setRecentWords] = useState(
+    localStorage.getItem("recentWords") || ""
+  );
+  const [recentSendUser, setRecentSendUser] = useState(
+    localStorage.getItem("recentSendUser") || ""
+  );
   const MyID = useInput(localStorage.getItem("myID") || "");
   const [userSelectedWords, setUserSelectedWords] = useState<string[]>([]);
   const initBingoBoard = async () => {
@@ -61,24 +64,35 @@ const BingoContainer = () => {
     bingoBoard.forEach((item, index) => {
       return (boardData[index] = {
         value: item.value,
-        status: [myWord1, myWord2, myWord3, myWord4].includes(item.value) ? 1 : 0,
-        selected: [myWord1, myWord2, myWord3, myWord4].includes(item.value) ? 1 : 0,
+        status: [myWord1, myWord2, myWord3, myWord4].includes(item.value)
+          ? 1
+          : 0,
+        selected: [myWord1, myWord2, myWord3, myWord4].includes(item.value)
+          ? 1
+          : 0,
       });
     });
-    localStorage.setItem("myWordList", [myWord1, myWord2, myWord3, myWord4].join("|"));
+    localStorage.setItem(
+      "myWordList",
+      [myWord1, myWord2, myWord3, myWord4].join("|")
+    );
 
     if (MyID.value != "") {
       const result = await singUpUser(MyID.value);
-      if (result === false && !confirm("이미 누군가 사용중인 계정입니다. 정말 로그인하시겠습니까?") && !confirm("정말 로그인하시겠습니까???"))
-      {
+      if (
+        result === false &&
+        !confirm("이미 누군가 사용중인 계정입니다. 정말 로그인하시겠습니까?") &&
+        !confirm("정말 로그인하시겠습니까???")
+      ) {
         localStorage.setItem("myWordList", "");
         localStorage.setItem("recentWords", "");
         localStorage.setItem("recentSendUser", "");
         localStorage.setItem("myID", "");
-        return
+        return;
       }
 
       const user = await getUser(MyID.value);
+
       await createBingoBoard(user.user_id, boardData);
     }
   };
@@ -88,8 +102,10 @@ const BingoContainer = () => {
     const userLatestInteraction = await getUserLatestInteraction(user.user_id);
 
     if (userLatestInteraction) {
-      const sendUserName = await getUserName(userLatestInteraction.send_user_id);
-      const wordList = userLatestInteraction.word_id_list
+      const sendUserName = await getUserName(
+        userLatestInteraction.send_user_id
+      );
+      const wordList = userLatestInteraction.word_id_list;
       localStorage.setItem("recentWords", wordList);
       localStorage.setItem("recentSendUser", sendUserName);
       setRecentWords(wordList);
@@ -121,8 +137,7 @@ const BingoContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       const user = await getUser(MyID.value);
-      if (user.user_id === null)
-        return
+      if (user.user_id === null) return;
       const fetchedBingoWords = await getBingoBoard(user.user_id);
       const fetchedSelectedWords = await getSelectedWords(user.user_id);
       setBingoWords(fetchedBingoWords);

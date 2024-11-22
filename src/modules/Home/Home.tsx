@@ -3,7 +3,11 @@ import { toast, ToastContainer } from "react-toastify";
 import { styled } from "@mui/system";
 import { useState } from "react";
 import { SHA256 } from "crypto-js";
-import { singUpUser } from "../../api/bingo_api";
+import {
+  singUpUser,
+  createBingoBoard,
+  getBingoBoard,
+} from "../../api/bingo_api";
 
 const StyledContainer = styled(Container)({
   textAlign: "center",
@@ -21,7 +25,7 @@ const Home = () => {
     console.log(loginId);
     const hash_password = SHA256(password).toString();
 
-    const result = singUpUser(loginId, hash_password);
+    const result = await singUpUser(loginId, hash_password);
     if (result.ok === false) {
       toast.error(result.message);
       localStorage.setItem("myWordList", "");
@@ -30,6 +34,16 @@ const Home = () => {
       localStorage.setItem("myID", "");
     }
     localStorage.setItem("myID", loginId);
+
+    const bingoData = await getBingoBoard(loginId);
+    if (bingoData.length == 0) {
+      const boardData: {
+        [key: string]: { value: string; status: number; selected: number };
+      } = {};
+      await createBingoBoard(result.user_id, boardData);
+    }
+
+    window.location.href = "/bingo";
   };
 
   return (
