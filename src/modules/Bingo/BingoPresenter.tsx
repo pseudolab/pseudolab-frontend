@@ -178,7 +178,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
         <Wrapper>
           <MyInfo>My Id: {props.myID}</MyInfo>
           <Typography>자기가 하고 있는 일 소개</Typography>
-          <Typography>올해 이룬 것과 내년 목표 이야기하기</Typography>
+          <Typography>올해 이룬 것, 내년 목표</Typography>
           <Typography>최근 관심사(일, 취미 등)</Typography>
           <Typography>좋아하는 음식</Typography>
           <Typography>최근에 듣는 노동요</Typography>
