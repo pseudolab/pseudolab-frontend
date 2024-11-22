@@ -117,3 +117,14 @@ export const getUserName = async (userId: string) => {
   const userName = data["username"];
   return userName;
 };
+
+export const updateBingoFromQR = async (userId: string, targetId: string) => {
+  const response = await fetch(
+    `${API_URL}/api/bingo/boards/update/${userId}/${targetId}`,
+    {
+      method: "PATCH",
+    }
+  );
+  const data = await response.json();
+  return data;
+};

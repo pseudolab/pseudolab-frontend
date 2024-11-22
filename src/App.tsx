@@ -9,6 +9,7 @@ import Footer from "./modules/Footer/Footer.tsx";
 import SignUpForm from "./modules/Header/SignUpForm.tsx";
 import Board from "./modules/Community/index.tsx";
 import BoardView from "./modules/Community/BoardView.tsx";
+import BingoQR from "./modules/Bingo/BingoQR.tsx";
 import { Container, CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -21,13 +22,14 @@ function App() {
         <CssBaseline />
         <Container className="App">
           <Header />
-          <Routes> 
+          <Routes>
             <Route path="/" Component={Home} />
             <Route path="/builder" element={<IntroduceBuilder />} />
             <Route path="/runner" element={<Test />} />
             <Route path="/community/*" element={<Board />} />
             <Route path="/bingo" element={<Bingo />} />
             <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/bingo_qr/:id" element={<BingoQR />} />
             {/* <Route path="/posts" component={Posts} />
             <Route path="/posts/:id" component={Post} />
             <Route path="/posts/new" component={NewPost} />

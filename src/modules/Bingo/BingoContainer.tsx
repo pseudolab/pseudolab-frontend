@@ -106,7 +106,6 @@ const BingoContainer = () => {
         userLatestInteraction.send_user_id
       );
       const wordList = userLatestInteraction.word_id_list;
-      localStorage.setItem("recentWords", wordList);
       localStorage.setItem("recentSendUser", sendUserName);
       setRecentWords(wordList);
       setRecentSendUser(sendUserName);

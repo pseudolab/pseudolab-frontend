@@ -174,7 +174,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
           {/* {props.userSelectedWords.map((word) => (
             <LongTextBox key={word} text={word} />
           ))} */}
-          <RecentSendUserWrapper>
+          {/* <RecentSendUserWrapper>
             {props.recentSendUser === "" ? (
               ""
             ) : (
@@ -185,14 +185,14 @@ const BingoPresenter = (props: BingoPresenterProps) => {
                 <span> 님과 이야기를 나누었어요!</span>
               </>
             )}
-          </RecentSendUserWrapper>
+          </RecentSendUserWrapper> */}
           <BingoContainer>
             {props.bingoWords.map(({ value, status }) => (
               <SqaureTextBox
                 key={value}
                 value={value}
                 status={status}
-                recent_list={props.recentWords.split("|")}
+                recent_list={[""]}
               />
             ))}
           </BingoContainer>
