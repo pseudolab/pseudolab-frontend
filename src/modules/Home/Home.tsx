@@ -8,6 +8,10 @@ import {
   createBingoBoard,
   getBingoBoard,
 } from "../../api/bingo_api";
+import {
+  defafultBingoBoard,
+  shuffleArray,
+} from "../Bingo/components/DefaultBingoBoard";
 
 const StyledContainer = styled(Container)({
   textAlign: "center",
@@ -38,10 +42,8 @@ const Home = () => {
 
     const bingoData = await getBingoBoard(loginId);
     if (bingoData.length == 0) {
-      const boardData: {
-        [key: string]: { value: string; status: number; selected: number };
-      } = {};
-      await createBingoBoard(result.user_id, boardData);
+      let bingoBoard = shuffleArray(defafultBingoBoard);
+      await createBingoBoard(result.user_id, bingoBoard);
     }
 
     window.location.href = "/bingo";
