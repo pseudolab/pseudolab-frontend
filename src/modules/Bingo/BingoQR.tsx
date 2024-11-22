@@ -8,16 +8,17 @@ const BingoQR = () => {
   useEffect(() => {
     // API 호출
     const fetchData = async () => {
+      const origin_id = atob(id);
       const myId = localStorage.getItem("myID");
-      if (myId === null) window.location.href = "";
+      if (myId === null || myId === "") window.location.href = "";
 
       const user = await getUser(myId);
-      if (user === null) {
+      if (user === null || user.ok === false) {
         localStorage.setItem("myID", "");
         window.location.href = "";
       }
 
-      const result = await updateBingoBoard(id, user.user_id);
+      const result = await updateBingoBoard(origin_id, user.user_id);
       if (result === true) window.location.href = "/bingo";
     };
 
