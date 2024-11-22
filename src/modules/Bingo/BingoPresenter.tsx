@@ -2,7 +2,13 @@ import { Dispatch, SetStateAction } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Container, Input, Button, FormControl } from "@mui/material";
+import {
+  Container,
+  Input,
+  Button,
+  FormControl,
+  Typography,
+} from "@mui/material";
 import { styled } from "@mui/system";
 import LongTextBox from "./components/LongTextBox.tsx";
 import SqaureTextBox from "./components/SqaureTextBox.tsx";
@@ -171,6 +177,11 @@ const BingoPresenter = (props: BingoPresenterProps) => {
       ) : (
         <Wrapper>
           <MyInfo>My Id: {props.myID}</MyInfo>
+          <Typography>자기가 하고 있는 일 소개</Typography>
+          <Typography>올해 이룬 것과 내년 목표 이야기하기</Typography>
+          <Typography>최근 관심사(일, 취미 등)</Typography>
+          <Typography>좋아하는 음식</Typography>
+          <Typography>최근에 듣는 노동요</Typography>
           {/* {props.userSelectedWords.map((word) => (
             <LongTextBox key={word} text={word} />
           ))} */}
@@ -204,13 +215,18 @@ const BingoPresenter = (props: BingoPresenterProps) => {
             ></InputBox>
             <Button
               onClick={async () => {
+                if (props.opponentID == props.myID) {
+                  toast.error("내가 나에게 보낼 수 없습니다.");
+                  return;
+                }
+
                 const res = await props.onClickSendWords(props.opponentID);
                 if (res) {
                   toast.success("상호작용에 성공했습니다.");
                 }
               }}
             >
-              내 단어 보내기
+              내 ID 보내기
             </Button>
             <ToastContainer
               position="top-right" // 알람 위치 지정
