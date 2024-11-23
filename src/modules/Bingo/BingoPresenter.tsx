@@ -180,7 +180,7 @@ const BingoPresenter = (props: BingoPresenterProps) => {
           <MyInfo>My Id: {props.myID}</MyInfo>
           <Box
             sx={{
-              display: "flex",
+              display: "block",
               alignItems: "center",
               padding: "8px",
               borderRadius: "8px",
@@ -189,17 +189,35 @@ const BingoPresenter = (props: BingoPresenterProps) => {
               gap: "12px",
             }}
           >
-            행사장 내 부스 방문 숨겨진 보물 QR 찍기 사람과 네트워킹 후 빙고 교환
-            빙고판을 다 채우면 미션2 클리어!
+            <a>행사장 내 부스 방문</a>
+            <br />
+            <a>숨겨진 보물 QR 찍기</a>
+            <br />
+            <a>사람과 네트워킹 후 빙고 교환</a>
+            <br />
+            <a>빙고판을 다 채우면 미션2 클리어!</a>
           </Box>
-          <pre>
-            <Typography>자기가 하고 있는 일 소개</Typography>
-            <Typography>올해 이룬 것, 내년 목표</Typography>
-            <Typography>최근 관심사(일, 취미 등)</Typography>
-            <Typography>좋아하는 음식</Typography>
-            <Typography>최근에 듣는 노동요</Typography>
-          </pre>
-
+          <Box
+            sx={{
+              display: "block",
+              alignItems: "center",
+              padding: "8px",
+              borderRadius: "8px",
+              backgroundColor: "white",
+              boxShadow: "0 4px 4px rgba(0, 0, 0, 0.3)",
+              gap: "12px",
+            }}
+          >
+            <a>자기가 하고 있는 일 소개</a>
+            <br />
+            <a>올해 이룬 것, 내년 목표</a>
+            <br />
+            <a>최근 관심사(일, 취미 등)</a>
+            <br />
+            <a>좋아하는 음식</a>
+            <br />
+            <a>최근에 듣는 노동요</a>
+          </Box>
           {/* {props.userSelectedWords.map((word) => (
             <LongTextBox key={word} text={word} />
           ))} */}
